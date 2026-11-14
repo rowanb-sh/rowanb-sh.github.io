@@ -3,109 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodirjon Tolipov — Portfolio</title>
+    <title>Nodirjon Tolipov — Student Dashboard & Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1>Nodirjon Tolipov</h1>
-            <p class="tagline">Business &amp; Finance Student | Python, C++ &amp; Web Developer</p>
-            <p class="bio">
-                Combining quantitative and financial analysis with software development. 
-                Building automated tools, web applications, and structured analytical solutions.
+    <div class="dashboard-container">
+        <!-- Верхняя панель (в стиле WIUT) -->
+        <header class="top-bar">
+            <div class="brand">
+                <span class="uni-badge">WIUT</span>
+                <span class="dashboard-title">Student Portfolio</span>
+            </div>
+            <div class="user-info-top">
+                <span class="status-dot"></span>
+                <span class="user-name">Nodirjon Tolipov</span>
+                <div class="avatar-small">NT</div>
+            </div>
+        </header>
+
+        <!-- Приветствие -->
+        <section class="welcome-section">
+            <h1>Hello, Nodirjon</h1>
+            <p class="welcome-subtitle">
+                Certificate of International Foundation Studies (CIFS) Student at WIUT. 
+                Focused on quantitative methods, business administration, and operational compliance.
             </p>
-            <div class="header-links">
-                <a href="#projects" class="btn primary">View Projects</a>
-                <a href="https://github.com/rowanb-sh" target="_blank" class="btn secondary">GitHub Profile</a>
+        </section>
+
+        <!-- Быстрые ссылки / Статус -->
+        <div class="grid-quick">
+            <div class="card-metric">
+                <span class="metric-label">Current Institution</span>
+                <span class="metric-value">WIUT</span>
+                <span class="metric-sub">Level 4 (CIFS Programme)</span>
+            </div>
+            <div class="card-metric">
+                <span class="metric-label">Core Focus</span>
+                <span class="metric-value">Analytics</span>
+                <span class="metric-sub">Finance, Math & Operations</span>
+            </div>
+            <div class="card-metric">
+                <span class="metric-label">Status</span>
+                <span class="metric-value status-active">Open to Learn</span>
+                <span class="metric-sub">Seeking University IT Tasks & Internships</span>
             </div>
         </div>
-    </header>
 
-    <main class="container">
-        <!-- Блок навыков -->
-        <section id="skills" class="section">
-            <h2>Technical Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Programming</h3>
-                    <p>Python, C++, Algorithms &amp; Data Structures</p>
+        <!-- Основной блок: Опыт и бэкграунд -->
+        <section class="dashboard-section">
+            <h2>Professional &amp; Operational Experience</h2>
+            <div class="card-block">
+                <div class="block-header">
+                    <h3>Road Transport Health and Safety Manager</h3>
+                    <span class="block-date">Apr 2026 – Nov 2026</span>
                 </div>
-                <div class="skill-card">
-                    <h3>Web Development</h3>
-                    <p>HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+)</p>
+                <p class="block-company">Safety &amp; Fleet Department (US Logistics)</p>
+                <ul class="task-list">
+                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations.</li>
+                    <li>Conducted daily operational control of shifts, tracked performance metrics, and managed task statuses.</li>
+                    <li>Prepared comprehensive shift-handover reports ensuring complete business continuity and transparency.</li>
+                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Блок: Образование -->
+        <section class="dashboard-section">
+            <h2>Education &amp; Training</h2>
+            <div class="education-grid">
+                <div class="card-block">
+                    <h3>Westminster International University in Tashkent (WIUT)</h3>
+                    <p class="block-date">Sep 2026 – Present</p>
+                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)</p>
+                    <p class="small-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics.</p>
                 </div>
-                <div class="skill-card">
-                    <h3>Tools &amp; Analytics</h3>
-                    <p>Git, GitHub, Telegram Bot API, Quantitative Modeling</p>
+                <div class="card-block">
+                    <h3>Academic Lyceum of WIUT</h3>
+                    <p class="block-date">Sep 2024 – Jun 2026</p>
+                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)</p>
+                    <p class="small-text">Focused on advanced Mathematics, Algebra, Geometry, Statistics, and English.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Блок проектов с фильтрацией -->
-        <section id="projects" class="section">
-            <div class="section-header">
-                <h2>Selected Projects</h2>
-                <div class="filter-buttons" id="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="python">Python</button>
-                    <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="cpp">C++</button>
+        <!-- Блок: Навыки и языки -->
+        <section class="dashboard-section">
+            <h2>Skills &amp; Competencies</h2>
+            <div class="skills-dashboard-grid">
+                <div class="card-block">
+                    <h3>Analytical &amp; Technical</h3>
+                    <p>Quantitative Data Analysis, Finance Basics, Academic Research, Git/GitHub basics.</p>
+                </div>
+                <div class="card-block">
+                    <h3>Operations &amp; Compliance</h3>
+                    <p>SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.</p>
+                </div>
+                <div class="card-block">
+                    <h3>Languages</h3>
+                    <p>Russian (Native), English (B2 - IELTS certified).</p>
                 </div>
             </div>
-
-            <div class="projects-grid">
-                <!-- Проект 1: Python -->
-                <article class="project-card" data-category="python">
-                    <div class="project-tag">Python</div>
-                    <h3>Telegram Automation Bot</h3>
-                    <p>
-                        A custom Telegram bot built with Python to automate user interactions, 
-                        process structured requests, and manage data workflows efficiently.
-                    </p>
-                    <div class="project-footer">
-                        <span class="tech-list">Python • Telegram API</span>
-                        <a href="https://github.com/rowanb-sh" target="_blank" class="code-link">Source Code &rarr;</a>
-                    </div>
-                </article>
-
-                <!-- Проект 2: Web -->
-                <article class="project-card" data-category="web">
-                    <div class="project-tag">Web</div>
-                    <h3>Responsive Web Platforms</h3>
-                    <p>
-                        Multi-page websites built with modular architecture, clean semantic HTML, 
-                        responsive CSS layouts, and interactive JavaScript components.
-                    </p>
-                    <div class="project-footer">
-                        <span class="tech-list">HTML • CSS • JavaScript</span>
-                        <a href="https://github.com/rowanb-sh" target="_blank" class="code-link">Source Code &rarr;</a>
-                    </div>
-                </article>
-
-                <!-- Проект 3: C++ -->
-                <article class="project-card" data-category="cpp">
-                    <div class="project-tag">C++</div>
-                    <h3>Algorithmic &amp; Quantitative Problem Solving</h3>
-                    <p>
-                        Implementation of core algorithms, mathematical models, and optimized 
-                        console applications written in standard C++.
-                    </p>
-                    <div class="project-footer">
-                        <span class="tech-list">C++ • STL • Algorithms</span>
-                        <a href="https://github.com/rowanb-sh" target="_blank" class="code-link">Source Code &rarr;</a>
-                    </div>
-                </article>
-            </div>
         </section>
-    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Nodirjon Tolipov. Built with HTML, CSS &amp; JavaScript.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        <!-- Футер -->
+        <footer class="dashboard-footer">
+            <p>&copy; 2026 Nodirjon Tolipov. Built for academic &amp; professional presentation.</p>
+            <div class="footer-links">
+                <a href="https://github.com/rowanb-sh" target="_blank">GitHub Profile</a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

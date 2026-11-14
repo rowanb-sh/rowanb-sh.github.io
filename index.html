@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodirjon Tolipov — Portfolio</title>
+    <title>Nodirjon Tolipov</title>
     <style>
         /* Тема по умолчанию: Midnight (Глубокий синий) */
         :root {
             --bg-main: #070b14;
             --bg-gradient: radial-gradient(circle at top right, #111e38 0%, #070b14 60%);
-            --card-bg: rgba(19, 27, 46, 0.75);
-            --card-border: rgba(30, 41, 59, 0.8);
+            --card-bg: #111827;
+            --card-border: #1e293b;
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
             --accent-blue: #3b82f6;
@@ -48,7 +48,11 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -67,50 +71,27 @@
             margin: 0 auto;
         }
 
-        /* Top Bar */
+        /* Top Bar (исправлен z-index, чтобы меню тем было поверх всего) */
         .top-bar {
+            position: relative;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
-            padding: 14px 24px;
+            padding: 16px 24px;
             border-radius: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
-        .brand-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-name {
-            font-weight: 700;
-            font-size: 1.05rem;
-        }
-
+        /* Крупная выразительная дата */
         .current-date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .top-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .top-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .top-links a:hover {
-            color: var(--accent-blue);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
         /* Theme Selector */
@@ -122,30 +103,33 @@
             background-color: var(--card-border);
             border: 1px solid var(--card-border);
             color: var(--text-primary);
-            padding: 7px 12px;
+            padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent-blue);
         }
 
         .theme-menu {
             position: absolute;
             right: 0;
-            top: 42px;
+            top: 46px;
             background-color: var(--card-bg);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            width: 170px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+            width: 185px;
             display: none;
             flex-direction: column;
             padding: 6px;
-            z-index: 100;
+            z-index: 2000;
         }
 
         .theme-menu.show {
@@ -157,13 +141,13 @@
             border: none;
             color: var(--text-primary);
             text-align: left;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .theme-option:hover {
@@ -171,11 +155,12 @@
             color: var(--accent-blue);
         }
 
-        /* Navigation Pills (Разделение на отделы в стиле топ-дизайнеров) */
+        /* Navigation Pills (Сбалансированное расположение без лишней кнопки Overview) */
         .nav-pills {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
             flex-wrap: wrap;
         }
 
@@ -183,31 +168,31 @@
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 8px 18px;
+            padding: 9px 22px;
             border-radius: 30px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 500;
-            backdrop-filter: blur(10px);
         }
 
-        .pill-btn:hover, .pill-btn.active {
+        .pill-btn:hover {
             background-color: var(--accent-blue);
             color: #ffffff;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: 0 0 14px var(--accent-glow);
+            transform: translateY(-1px);
         }
 
         /* Hero Section */
         .hero-section {
+            position: relative;
+            z-index: 1;
             margin-bottom: 36px;
             background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
             padding: 38px;
             border-radius: 18px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-            position: relative;
             overflow: hidden;
         }
 
@@ -223,7 +208,7 @@
         }
 
         .hero-section h1 {
-            font-size: 2.3rem;
+            font-size: 2.35rem;
             font-weight: 800;
             margin-bottom: 8px;
             letter-spacing: -0.02em;
@@ -257,7 +242,6 @@
 
         .card-block {
             background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 24px;
@@ -361,17 +345,9 @@
 </head>
 <body>
     <div class="portfolio-container">
-        <!-- Top Bar with Date, Contacts & Theme Switcher -->
+        <!-- Top Bar with Bigger Date & Fixed Theme Selector -->
         <header class="top-bar">
-            <div class="brand-info">
-                <span class="brand-name">Nodirjon Tolipov</span>
-                <span class="current-date" id="currentDate">Sunday, 15 November</span>
-            </div>
-
-            <div class="top-links">
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-                <a href="mailto:ntolipov.work@gmail.com">Email</a>
-            </div>
+            <span class="current-date" id="currentDate">Sunday, 15 November</span>
 
             <div class="theme-dropdown-wrapper">
                 <button class="theme-btn" id="themeMenuBtn" onclick="toggleThemeMenu()">
@@ -386,20 +362,19 @@
             </div>
         </header>
 
-        <!-- Navigation Pills (Разделы как у дизайнеров) -->
+        <!-- Navigation Pills -->
         <nav class="nav-pills">
-            <a href="#hero" class="pill-btn active">Overview</a>
             <a href="#experience" class="pill-btn">Experience</a>
             <a href="#education" class="pill-btn">Education</a>
             <a href="#skills" class="pill-btn">Skills</a>
         </nav>
 
-        <!-- Hero Section (Дружелюбное приветствие) -->
+        <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <h1>Hi, I'm Nodirjon!</h1>
             <p class="hero-subtitle">Student at Westminster International University in Tashkent (WIUT)</p>
             <p class="hero-bio">
-                Interested in logic, patterns, and systemic relationships[span_8](start_span)[span_8](end_span). My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span). Dedicated to structured problem-solving and continuous professional growth.
+                Interested in logic, patterns, and systemic relationships. My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance. Dedicated to structured problem-solving and continuous professional growth.
             </p>
         </section>
 
@@ -411,12 +386,12 @@
                     <h3>Road Transport Health and Safety Manager</h3>
                     <span class="block-date">Apr 2026 – Nov 2026</span>
                 </div>
-                <p class="block-sub">Safety & Fleet Department (US Logistics)</p>
+                <p class="block-sub">Safety &amp; Fleet Department (US Logistics)</p>
                 <ul class="task-list">
-                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations[span_11](start_span)[span_11](end_span).</li>
-                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses[span_12](start_span)[span_12](end_span).</li>
-                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency[span_13](start_span)[span_13](end_span).</li>
-                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting[span_14](start_span)[span_14](end_span).</li>
+                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations.</li>
+                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses.</li>
+                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency.</li>
+                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting.</li>
                 </ul>
             </div>
         </section>
@@ -428,14 +403,14 @@
                 <div class="card-block">
                     <h3>Westminster International University in Tashkent (WIUT)</h3>
                     <p class="block-date">Sep 2026 – Present</p>
-                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)[span_15](start_span)[span_15](end_span)</p>
-                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics[span_16](start_span)[span_16](end_span).</p>
+                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)</p>
+                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics.</p>
                 </div>
                 <div class="card-block">
                     <h3>Academic Lyceum of WIUT</h3>
                     <p class="block-date">Sep 2024 – Jun 2026</p>
-                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)[span_17](start_span)[span_17](end_span)</p>
-                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English[span_18](start_span)[span_18](end_span).</p>
+                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)</p>
+                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English.</p>
                 </div>
             </div>
         </section>
@@ -446,18 +421,18 @@
             <div class="dual-grid">
                 <div class="card-block">
                     <h3>Analytical &amp; Operational</h3>
-                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking[span_19](start_span)[span_19](end_span).</p>
+                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.</p>
                 </div>
                 <div class="card-block">
                     <h3>Languages</h3>
-                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified)[span_20](start_span)[span_20](end_span).</p>
+                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified).</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="portfolio-footer">
-            <p>&copy; 2026 Nodirjon Tolipov. Personal Portfolio.</p>
+            <p>&copy; 2026 Nodirjon Tolipov</p>
             <div class="portfolio-footer-links">
                 <a href="https://linkedin.com" target="_blank">LinkedIn</a>
                 <a href="mailto:ntolipov.work@gmail.com">Email</a>
@@ -472,7 +447,7 @@
         const today = new Date();
         document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', options);
 
-        // Меню тем
+        // Открытие и закрытие меню тем
         function toggleThemeMenu() {
             const menu = document.getElementById('themeMenu');
             menu.classList.toggle('show');
@@ -484,6 +459,7 @@
             }
         });
 
+        // Применение выбранной темы
         function setTheme(mode) {
             const body = document.body;
             body.classList.remove('theme-light', 'theme-dark');
@@ -521,12 +497,9 @@
             }
         }
 
-        // Запуск при загрузке
+        // Запуск при загрузке страницы
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme_mode') || 'system';
-            if (savedTheme === 'system') {
-                applySystemTheme();
-            }
             setTheme(savedTheme);
         });
     </script>

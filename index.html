@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodirjon Tolipov — Student Dashboard</title>
+    <title>Nodirjon Tolipov — Portfolio</title>
     <style>
+        /* Переменные для темной темы (по умолчанию) */
         :root {
             --bg-main: #0b0f19;
             --card-bg: #131b2e;
@@ -12,29 +13,43 @@
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
             --accent-blue: #3b82f6;
-            --success-green: #10b981;
+            --accent-hover: #2563eb;
+            --tag-bg: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Переменные для светлой темы */
+        body.light-theme {
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --tag-bg: rgba(37, 99, 235, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-main);
             color: var(--text-primary);
-            line-height: 1.5;
+            line-height: 1.6;
             padding: 32px 16px;
         }
 
-        .dashboard-container {
+        .portfolio-container {
             max-width: 900px;
             margin: 0 auto;
         }
 
-        /* Top Bar */
+        /* Top Navigation Bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -43,137 +58,85 @@
             border: 1px solid var(--card-border);
             padding: 16px 24px;
             border-radius: 12px;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .uni-badge {
-            background-color: var(--accent-blue);
-            color: white;
+        .brand-name {
             font-weight: 700;
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.05em;
-        }
-
-        .dashboard-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .user-info-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--success-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--success-green);
-        }
-
-        .avatar-small {
-            width: 34px;
-            height: 34px;
-            background-color: #1e3a8a;
-            color: #93c5fd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        /* Welcome Section */
-        .welcome-section {
-            margin-bottom: 32px;
-        }
-
-        .welcome-section h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
             letter-spacing: -0.01em;
         }
 
-        .welcome-subtitle {
+        .theme-toggle-btn {
+            background-color: var(--card-border);
+            border: none;
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        /* Hero / Header Section */
+        .hero-section {
+            margin-bottom: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 36px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-blue);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .hero-bio {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1rem;
             max-width: 750px;
         }
 
-        /* Quick Metric Cards */
-        .grid-quick {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-bottom: 36px;
-        }
-
-        .card-metric {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 8px;
-        }
-
-        .metric-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .metric-value.status-active {
-            color: #34d399;
-        }
-
-        .metric-sub {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
         /* Sections */
-        .dashboard-section {
-            margin-bottom: 36px;
+        .section {
+            margin-bottom: 40px;
         }
 
-        .dashboard-section h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 16px;
+        .section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
         .card-block {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 12px;
-            padding: 24px;
+            padding: 26px;
             margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
 
         .block-header {
@@ -186,22 +149,23 @@
         }
 
         .card-block h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
         }
 
         .block-date {
             font-size: 0.85rem;
             color: var(--text-muted);
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: var(--tag-bg);
             padding: 3px 10px;
             border-radius: 6px;
-            border: 1px solid var(--card-border);
+            font-weight: 500;
         }
 
         .block-sub {
-            font-size: 0.92rem;
-            color: #60a5fa;
+            font-size: 0.95rem;
+            color: var(--accent-blue);
+            font-weight: 500;
             margin-bottom: 14px;
         }
 
@@ -209,23 +173,22 @@
             list-style-type: disc;
             padding-left: 20px;
             color: var(--text-muted);
-            font-size: 0.93rem;
+            font-size: 0.95rem;
         }
 
         .task-list li {
             margin-bottom: 8px;
         }
 
-        .small-text {
-            font-size: 0.9rem;
+        .regular-text {
+            font-size: 0.95rem;
             color: var(--text-muted);
-            margin-top: 8px;
         }
 
-        /* Grid for Education & Skills */
+        /* Dual Column Grid */
         .dual-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
         }
 
@@ -235,74 +198,51 @@
         }
 
         /* Footer */
-        .dashboard-footer {
+        .portfolio-footer {
             border-top: 1px solid var(--card-border);
             padding-top: 24px;
-            margin-top: 48px;
+            margin-top: 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
-        .footer-links a {
-            color: #60a5fa;
+        .portfolio-footer a {
+            color: var(--accent-blue);
             text-decoration: none;
+            font-weight: 500;
         }
 
-        .footer-links a:hover {
+        .portfolio-footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Top Bar -->
+    <div class="portfolio-container">
+        <!-- Top Bar with Theme Switcher -->
         <header class="top-bar">
-            <div class="brand">
-                <span class="uni-badge">WIUT</span>
-                <span class="dashboard-title">Student Dashboard</span>
-            </div>
-            <div class="user-info-top">
-                <span class="status-dot"></span>
-                <span>Nodirjon Tolipov</span>
-                <div class="avatar-small">NT</div>
-            </div>
+            <div class="brand-name">Nodirjon Tolipov</div>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+                <span id="themeIcon">☀️</span> <span id="themeText">Light Mode</span>
+            </button>
         </header>
 
-        <!-- Welcome -->
-        <section class="welcome-section">
-            <h1>Hello, Nodirjon</h1>
-            <p class="welcome-subtitle">
-                Certificate of International Foundation Studies (CIFS) student at Westminster International University in Tashkent. 
-                Focused on quantitative methods, business administration, and operational compliance.
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Nodirjon Tolipov</h1>
+            <p class="hero-subtitle">Student at Westminster International University in Tashkent (WIUT)</p>
+            <p class="hero-bio">
+                Interested in logic, patterns, and systemic relationships[span_4](start_span)[span_4](end_span). My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span). Dedicated to structured problem-solving and continuous professional growth.
             </p>
         </section>
 
-        <!-- Metrics -->
-        <div class="grid-quick">
-            <div class="card-metric">
-                <span class="metric-label">Institution</span>
-                <span class="metric-value">WIUT</span>
-                <span class="metric-sub">Level 4 (CIFS Programme)</span>
-            </div>
-            <div class="card-metric">
-                <span class="metric-label">Core Focus</span>
-                <span class="metric-value">Analytics & Ops</span>
-                <span class="metric-sub">Finance, Math & Compliance</span>
-            </div>
-            <div class="card-metric">
-                <span class="metric-label">Status</span>
-                <span class="metric-value status-active">Open to Tasks</span>
-                <span class="metric-sub">Ready for University IT / Internships</span>
-            </div>
-        </div>
-
-        <!-- Experience -->
-        <section class="dashboard-section">
+        <!-- Professional Experience -->
+        <section class="section">
             <h2>Professional Experience</h2>
             <div class="card-block">
                 <div class="block-header">
@@ -311,55 +251,86 @@
                 </div>
                 <p class="block-sub">Safety & Fleet Department (US Logistics)</p>
                 <ul class="task-list">
-                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations[span_3](start_span)[span_3](end_span).</li>
-                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses[span_4](start_span)[span_4](end_span).</li>
-                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency[span_5](start_span)[span_5](end_span).</li>
-                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting[span_6](start_span)[span_6](end_span).</li>
+                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations[span_7](start_span)[span_7](end_span).</li>
+                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses[span_8](start_span)[span_8](end_span).</li>
+                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency[span_9](start_span)[span_9](end_span).</li>
+                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting[span_10](start_span)[span_10](end_span).</li>
                 </ul>
             </div>
         </section>
 
-        <!-- Education -->
-        <section class="dashboard-section">
+        <!-- Education & Training -->
+        <section class="section">
             <h2>Education &amp; Training</h2>
             <div class="dual-grid">
                 <div class="card-block">
                     <h3>Westminster International University in Tashkent (WIUT)</h3>
                     <p class="block-date">Sep 2026 – Present</p>
-                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)[span_7](start_span)[span_7](end_span)</p>
-                    <p class="small-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics[span_8](start_span)[span_8](end_span).</p>
+                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)[span_11](start_span)[span_11](end_span)</p>
+                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics[span_12](start_span)[span_12](end_span).</p>
                 </div>
                 <div class="card-block">
                     <h3>Academic Lyceum of WIUT</h3>
                     <p class="block-date">Sep 2024 – Jun 2026</p>
-                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)[span_9](start_span)[span_9](end_span)</p>
-                    <p class="small-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English[span_10](start_span)[span_10](end_span).</p>
+                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)[span_13](start_span)[span_13](end_span)</p>
+                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English[span_14](start_span)[span_14](end_span).</p>
                 </div>
             </div>
         </section>
 
         <!-- Skills & Languages -->
-        <section class="dashboard-section">
+        <section class="section">
             <h2>Skills &amp; Competencies</h2>
             <div class="dual-grid">
                 <div class="card-block">
-                    <h3>Analytical &amp; Operations</h3>
-                    <p class="small-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking[span_11](start_span)[span_11](end_span).</p>
+                    <h3>Analytical &amp; Operational</h3>
+                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking[span_15](start_span)[span_15](end_span).</p>
                 </div>
                 <div class="card-block">
                     <h3>Languages</h3>
-                    <p class="small-text">Russian (Native), English (B2 - IELTS certified)[span_12](start_span)[span_12](end_span).</p>
+                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified)[span_16](start_span)[span_16](end_span).</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="dashboard-footer">
-            <p>&copy; 2026 Nodirjon Tolipov. Professional Portfolio.</p>
+        <footer class="portfolio-footer">
+            <p>&copy; 2026 Nodirjon Tolipov. Personal Portfolio.</p>
             <div class="footer-links">
                 <a href="https://github.com/rowanb-sh" target="_blank">GitHub Profile</a>
             </div>
         </footer>
     </div>
+
+    <script>
+        // Функция переключения тем (Dark / Light) с сохранением выбора
+        function toggleTheme() {
+            const body = document.body;
+            const themeText = document.getElementById('themeText');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                themeText.textContent = 'Dark Mode';
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeText.textContent = 'Light Mode';
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Автоматическая проверка сохраненной темы при загрузке
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeText').textContent = 'Dark Mode';
+                document.getElementById('themeIcon').textContent = '🌙';
+            }
+        });
+    </script>
 </body>
 </html>

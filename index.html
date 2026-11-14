@@ -5,27 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodirjon Tolipov — Portfolio</title>
     <style>
-        /* Переменные для темной темы (по умолчанию) */
+        /* Тема по умолчанию: Midnight (глубокий синий интранет) */
         :root {
-            --bg-main: #0b0f19;
-            --card-bg: #131b2e;
-            --card-border: #1e293b;
+            --bg-main: #070b14;
+            --bg-gradient: radial-gradient(circle at top right, #111e38 0%, #070b14 60%);
+            --card-bg: rgba(19, 27, 46, 0.75);
+            --card-border: rgba(30, 41, 59, 0.8);
+            --card-hover: rgba(30, 41, 59, 1);
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
             --accent-blue: #3b82f6;
-            --accent-hover: #2563eb;
-            --tag-bg: rgba(59, 130, 246, 0.1);
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --tag-bg: rgba(59, 130, 246, 0.12);
         }
 
-        /* Переменные для светлой темы */
-        body.light-theme {
-            --bg-main: #f8fafc;
+        /* Тема: Dark */
+        body.theme-dark {
+            --bg-main: #0f172a;
+            --bg-gradient: linear-gradient(to bottom, #0f172a, #090d16);
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --card-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #60a5fa;
+            --accent-glow: rgba(96, 165, 250, 0.2);
+            --tag-bg: rgba(96, 165, 250, 0.12);
+        }
+
+        /* Тема: Light */
+        body.theme-light {
+            --bg-main: #f1f5f9;
+            --bg-gradient: linear-gradient(to bottom, #f8fafc, #e2e8f0);
             --card-bg: #ffffff;
-            --card-border: #e2e8f0;
+            --card-border: #cbd5e1;
+            --card-hover: #ffffff;
             --text-primary: #0f172a;
             --text-muted: #64748b;
             --accent-blue: #2563eb;
-            --accent-hover: #1d4ed8;
+            --accent-glow: rgba(37, 99, 235, 0.15);
             --tag-bg: rgba(37, 99, 235, 0.08);
         }
 
@@ -33,110 +51,191 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-main);
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
             color: var(--text-primary);
             line-height: 1.6;
             padding: 32px 16px;
+            min-height: 100vh;
         }
 
         .portfolio-container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
         }
 
-        /* Top Navigation Bar */
+        /* Top Bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
-            padding: 16px 24px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            padding: 14px 24px;
+            border-radius: 14px;
+            margin-bottom: 36px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
         }
 
         .brand-name {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             letter-spacing: -0.01em;
         }
 
-        .theme-toggle-btn {
+        .current-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Theme Selector Dropdown */
+        .theme-dropdown-wrapper {
+            position: relative;
+        }
+
+        .theme-btn {
             background-color: var(--card-border);
-            border: none;
+            border: 1px solid var(--card-border);
             color: var(--text-primary);
             padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .theme-toggle-btn:hover {
-            background-color: var(--accent-blue);
-            color: #ffffff;
+        .theme-btn:hover {
+            border-color: var(--accent-blue);
         }
 
-        /* Hero / Header Section */
-        .hero-section {
-            margin-bottom: 40px;
+        .theme-menu {
+            position: absolute;
+            right: 0;
+            top: 45px;
             background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
-            padding: 36px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 190px;
+            display: none;
+            flex-direction: column;
+            padding: 6px;
+            z-index: 100;
+        }
+
+        .theme-menu.show {
+            display: flex;
+        }
+
+        .theme-option {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            text-align: left;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-option:hover, .theme-option.active {
+            background-color: var(--tag-bg);
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section (Живой блок) */
+        .hero-section {
+            margin-bottom: 36px;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            padding: 38px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-blue);
+            box-shadow: 0 0 12px var(--accent-blue);
         }
 
         .hero-section h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: -0.02em;
         }
 
         .hero-subtitle {
             color: var(--accent-blue);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 16px;
         }
 
         .hero-bio {
             color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 750px;
+            font-size: 0.98rem;
+            max-width: 740px;
         }
 
         /* Sections */
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 36px;
         }
 
         .section h2 {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             color: var(--text-primary);
             letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card-block {
             background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 26px;
+            border-radius: 14px;
+            padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-block:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--accent-glow);
         }
 
         .block-header {
@@ -149,39 +248,39 @@
         }
 
         .card-block h3 {
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             font-weight: 600;
         }
 
         .block-date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.82rem;
+            color: var(--accent-blue);
             background-color: var(--tag-bg);
             padding: 3px 10px;
             border-radius: 6px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .block-sub {
-            font-size: 0.95rem;
-            color: var(--accent-blue);
+            font-size: 0.92rem;
+            color: var(--text-muted);
             font-weight: 500;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .task-list {
             list-style-type: disc;
             padding-left: 20px;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.93rem;
         }
 
         .task-list li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .regular-text {
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             color: var(--text-muted);
         }
 
@@ -201,14 +300,14 @@
         .portfolio-footer {
             border-top: 1px solid var(--card-border);
             padding-top: 24px;
-            margin-top: 50px;
+            margin-top: 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
 
         .portfolio-footer a {
@@ -224,20 +323,32 @@
 </head>
 <body>
     <div class="portfolio-container">
-        <!-- Top Bar with Theme Switcher -->
+        <!-- Top Bar with Date & Theme Selector -->
         <header class="top-bar">
-            <div class="brand-name">Nodirjon Tolipov</div>
-            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
-                <span id="themeIcon">☀️</span> <span id="themeText">Light Mode</span>
-            </button>
+            <div class="brand-info">
+                <span class="brand-name">Nodirjon Tolipov</span>
+                <span class="current-date" id="currentDate">Sunday, 15 November</span>
+            </div>
+
+            <div class="theme-dropdown-wrapper">
+                <button class="theme-btn" id="themeMenuBtn" onclick="toggleThemeMenu()">
+                    <span id="activeThemeIcon">💻</span> <span id="activeThemeName">Follow device</span>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-option" onclick="setTheme('system')"><span>💻</span> Follow device</button>
+                    <button class="theme-option" onclick="setTheme('light')"><span>☀️</span> Light</button>
+                    <button class="theme-option" onclick="setTheme('dark')"><span>🌙</span> Dark</button>
+                    <button class="theme-option" onclick="setTheme('midnight')"><span>🌌</span> Midnight</button>
+                </div>
+            </div>
         </header>
 
-        <!-- Hero Section -->
+        <!-- Hero Section (Живой и объемный дизайн) -->
         <section class="hero-section">
             <h1>Nodirjon Tolipov</h1>
             <p class="hero-subtitle">Student at Westminster International University in Tashkent (WIUT)</p>
             <p class="hero-bio">
-                Interested in logic, patterns, and systemic relationships[span_4](start_span)[span_4](end_span). My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span). Dedicated to structured problem-solving and continuous professional growth.
+                Interested in logic, patterns, and systemic relationships[span_5](start_span)[span_5](end_span). My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span). Dedicated to structured problem-solving and continuous professional growth.
             </p>
         </section>
 
@@ -251,10 +362,10 @@
                 </div>
                 <p class="block-sub">Safety & Fleet Department (US Logistics)</p>
                 <ul class="task-list">
-                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations[span_7](start_span)[span_7](end_span).</li>
-                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses[span_8](start_span)[span_8](end_span).</li>
-                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency[span_9](start_span)[span_9](end_span).</li>
-                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting[span_10](start_span)[span_10](end_span).</li>
+                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations[span_8](start_span)[span_8](end_span).</li>
+                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses[span_9](start_span)[span_9](end_span).</li>
+                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency[span_10](start_span)[span_10](end_span).</li>
+                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting[span_11](start_span)[span_11](end_span).</li>
                 </ul>
             </div>
         </section>
@@ -266,14 +377,14 @@
                 <div class="card-block">
                     <h3>Westminster International University in Tashkent (WIUT)</h3>
                     <p class="block-date">Sep 2026 – Present</p>
-                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)[span_11](start_span)[span_11](end_span)</p>
-                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics[span_12](start_span)[span_12](end_span).</p>
+                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)[span_12](start_span)[span_12](end_span)</p>
+                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics[span_13](start_span)[span_13](end_span).</p>
                 </div>
                 <div class="card-block">
                     <h3>Academic Lyceum of WIUT</h3>
                     <p class="block-date">Sep 2024 – Jun 2026</p>
-                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)[span_13](start_span)[span_13](end_span)</p>
-                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English[span_14](start_span)[span_14](end_span).</p>
+                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)[span_14](start_span)[span_14](end_span)</p>
+                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English[span_15](start_span)[span_15](end_span).</p>
                 </div>
             </div>
         </section>
@@ -284,11 +395,11 @@
             <div class="dual-grid">
                 <div class="card-block">
                     <h3>Analytical &amp; Operational</h3>
-                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking[span_15](start_span)[span_15](end_span).</p>
+                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking[span_16](start_span)[span_16](end_span).</p>
                 </div>
                 <div class="card-block">
                     <h3>Languages</h3>
-                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified)[span_16](start_span)[span_16](end_span).</p>
+                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified)[span_17](start_span)[span_17](end_span).</p>
                 </div>
             </div>
         </section>
@@ -303,33 +414,68 @@
     </div>
 
     <script>
-        // Функция переключения тем (Dark / Light) с сохранением выбора
-        function toggleTheme() {
+        // Автоматическое обновление даты в шапке
+        const options = { weekday: 'long', day: 'numeric', month: 'long' };
+        const today = new Date();
+        document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', options);
+
+        // Управление выпадающим меню тем
+        function toggleThemeMenu() {
+            const menu = document.getElementById('themeMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Закрытие меню при клике вне его
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.theme-dropdown-wrapper')) {
+                document.getElementById('themeMenu').classList.remove('show');
+            }
+        });
+
+        // Установка выбранной темы
+        function setTheme(mode) {
             const body = document.body;
-            const themeText = document.getElementById('themeText');
-            const themeIcon = document.getElementById('themeIcon');
+            body.classList.remove('theme-light', 'theme-dark');
             
-            body.classList.toggle('light-theme');
-            
-            if (body.classList.contains('light-theme')) {
-                themeText.textContent = 'Dark Mode';
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
+            let icon = '💻';
+            let name = 'Follow device';
+
+            if (mode === 'light') {
+                body.classList.add('theme-light');
+                icon = '☀️';
+                name = 'Light';
+            } else if (mode === 'dark') {
+                body.classList.add('theme-dark');
+                icon = '🌙';
+                name = 'Dark';
+            } else if (mode === 'midnight') {
+                // По умолчанию Midnight (без класса)
+                icon = '🌌';
+                name = 'Midnight';
             } else {
-                themeText.textContent = 'Light Mode';
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
+                // System / Follow device
+                applySystemTheme();
+            }
+
+            document.getElementById('activeThemeIcon').textContent = icon;
+            document.getElementById('activeThemeName').textContent = name;
+            localStorage.setItem('theme_mode', mode);
+            document.getElementById('themeMenu').classList.remove('show');
+        }
+
+        function applySystemTheme() {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const body = document.body;
+            body.classList.remove('theme-light', 'theme-dark');
+            if (!prefersDark) {
+                body.classList.add('theme-light');
             }
         }
 
-        // Автоматическая проверка сохраненной темы при загрузке
+        // Загрузка сохраненной темы при открытии
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-theme');
-                document.getElementById('themeText').textContent = 'Dark Mode';
-                document.getElementById('themeIcon').textContent = '🌙';
-            }
+            const savedTheme = localStorage.getItem('theme_mode') || 'system';
+            setTheme(savedTheme);
         });
     </script>
 </body>

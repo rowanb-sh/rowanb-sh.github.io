@@ -19,15 +19,32 @@
     </div>
 
     <div class="portfolio-container">
-        <!-- Верхняя строка: дата слева, выбор языка и темы справа -->
+        <!-- Верхняя строка: дата слева, выбор языка и темы справа (исправлено выравнивание в один ряд) -->
         <div class="top-utility-row">
             <span class="current-date" id="currentDate">Sunday, 15 November</span>
 
             <div class="top-controls">
-                <!-- Переключатель языка -->
-                <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
-                    <span id="activeLangText">EN</span>
-                </button>
+                <!-- Выпадающий список языков (10 популярных языков) -->
+                <div class="lang-dropdown-wrapper">
+                    <button class="lang-btn" id="langMenuBtn" onclick="toggleLangMenu()">
+                        <span id="activeLangText">EN</span>
+                        <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="langMenu">
+                        <button class="dropdown-option" onclick="setLanguage('en')">English (EN)</button>
+                        <button class="dropdown-option" onclick="setLanguage('ru')">Русский (RU)</button>
+                        <button class="dropdown-option" onclick="setLanguage('uz')">Oʻzbekcha (UZ)</button>
+                        <button class="dropdown-option" onclick="setLanguage('es')">Español (ES)</button>
+                        <button class="dropdown-option" onclick="setLanguage('fr')">Français (FR)</button>
+                        <button class="dropdown-option" onclick="setLanguage('de')">Deutsch (DE)</button>
+                        <button class="dropdown-option" onclick="setLanguage('it')">Italiano (IT)</button>
+                        <button class="dropdown-option" onclick="setLanguage('zh')">中文 (ZH)</button>
+                        <button class="dropdown-option" onclick="setLanguage('ar')">العربية (AR)</button>
+                        <button class="dropdown-option" onclick="setLanguage('tr')">Türkçe (TR)</button>
+                    </div>
+                </div>
 
                 <!-- Выбор темы -->
                 <div class="theme-dropdown-wrapper">
@@ -38,10 +55,10 @@
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
-                    <div class="theme-menu" id="themeMenu">
-                        <button class="theme-option" onclick="setTheme('light')"><span>☀️</span> Light</button>
-                        <button class="theme-option" onclick="setTheme('dark')"><span>🌙</span> Dark</button>
-                        <button class="theme-option" onclick="setTheme('midnight')"><span>🌌</span> Midnight</button>
+                    <div class="dropdown-menu" id="themeMenu">
+                        <button class="dropdown-option" onclick="setTheme('light')"><span>☀️</span> Light</button>
+                        <button class="dropdown-option" onclick="setTheme('dark')"><span>🌙</span> Dark</button>
+                        <button class="dropdown-option" onclick="setTheme('midnight')"><span>🌌</span> Midnight</button>
                     </div>
                 </div>
             </div>

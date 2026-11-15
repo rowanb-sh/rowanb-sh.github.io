@@ -43,6 +43,12 @@ const translations = {
         skills_lang_title: "Languages", skills_lang_sub: "Russian & English",
         skills_lang_text: "Russian (Native), English (B2 - IELTS certified).",
         footer_email: "Email"
+        nav_projects: "Projects",
+        projects_heading: "Projects",
+        proj1_title: "Safe Haven Platform",
+        proj1_sub: "Educational Hub & Social Enterprise",
+        proj1_desc: "Developed a prototype website, white paper, and financial annex for an Income Share Agreement based educational hub."
+
     },
     ru: {
         nav_all: "Все", nav_exp: "Опыт", nav_edu: "Учеба", nav_skills: "Навыки",
@@ -74,6 +80,12 @@ const translations = {
         skills_lang_title: "Языки", skills_lang_sub: "Русский и английский",
         skills_lang_text: "Русский (родной), английский (B2 — сертификат IELTS).",
         footer_email: "Почта"
+        nav_projects: "Проекты",
+        projects_heading: "Проекты",
+        proj1_title: "Платформа Safe Haven",
+        proj1_sub: "Образовательный хаб и социальное предприятие",
+        proj1_desc: "Разработал прототип сайта, white paper и финансовое приложение для образовательного хаба на базе соглашений о доле от доходов."
+
     },
     uz: {
         nav_all: "Barchasi", nav_exp: "Tajriba", nav_edu: "Ta'lim", nav_skills: "Ko'nikmalar",

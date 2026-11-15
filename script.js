@@ -49,7 +49,7 @@ const sections = document.querySelectorAll('.tab-section');
 
 function moveGlider(activeTab) {
     navGlider.style.width = `${activeTab.offsetWidth}px`;
-    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 4}px)`;
+    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 5}px)`;
 }
 
 function filterSections(target) {

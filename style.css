@@ -609,3 +609,18 @@ body.glitch-mode .card-block {
     100% { transform: translate(2px, -1px) skewX(2deg); opacity: 0.9; }
 }
 
+/* Глитч для карточек-контейнеров */
+.card-block.element-glitch {
+    border-color: #ff007f !important;
+    box-shadow: 0 0 30px rgba(255, 0, 127, 0.35), 0 0 15px rgba(0, 240, 255, 0.3) !important;
+    transform: translate(3px, -2px) skewX(-1.5deg) !important;
+    background-color: var(--card-bg) !important;
+}
+
+/* Легкий сбой фоновых сфер во время хаоса */
+.bg-orbs.element-glitch {
+    filter: hue-rotate(60deg) blur(20px);
+    transform: scale(1.03);
+    transition: all 0.2s ease;
+}
+

@@ -500,22 +500,24 @@ function scheduleNextGlitch() {
 }
 
 function triggerPartialChaos() {
-    // Выбираем случайные элементы для локального сбоя (например, заголовки карточек или подзаголовки)
-    const targets = document.querySelectorAll('.card-block h3, .hero-subtitle, .block-date, .current-date');
+    // Теперь в список целей входят как текст, так и целые карточки-контейнеры
+    const targets = document.querySelectorAll('.card-block, .card-block h3, .hero-subtitle, .block-date, .current-date');
     if (targets.length === 0) return;
 
-    // Берем 1 или 2 случайных элемента из доступных
+    // Выбираем случайный элемент (карточку или текст)
     const randomTarget = targets[Math.floor(Math.random() * targets.length)];
     
     // Включаем глитч на 2.5 секунды
     randomTarget.classList.add('element-glitch');
     
+    // Если это карточка, иногда можем зацепить и фоновый контейнер сфер для глубины
+    const bgOrbs = document.querySelector('.bg-orbs');
+    if (Math.random() > 0.5 && bgOrbs) {
+        bgOrbs.classList.add('element-glitch');
+    }
+
     setTimeout(() => {
         randomTarget.classList.remove('element-glitch');
+        if (bgOrbs) bgOrbs.classList.remove('element-glitch');
     }, 2500);
 }
-
-// Запускаем таймер хаоса после полной загрузки страницы
-window.addEventListener('DOMContentLoaded', () => {
-    scheduleNextGlitch();
-});

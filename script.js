@@ -8,7 +8,15 @@ const locales = {
 function updateDate(lang) {
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
     const locale = locales[lang] || 'en-US';
-    document.getElementById('currentDate').textContent = new Date().toLocaleDateString(locale, options);
+    let dateStr = new Date().toLocaleDateString(locale, options);
+    
+    // Делаем первую букву строчной для языков, где дни недели пишутся с маленькой буквы
+    const lowercaseLangs = ['ru', 'uz', 'es', 'fr', 'it', 'tr', 'ar'];
+    if (lowercaseLangs.includes(lang)) {
+        dateStr = dateStr.charAt(0).toLowerCase() + dateStr.slice(1);
+    }
+    
+    document.getElementById('currentDate').textContent = dateStr;
 }
 
 // Словарь переводов

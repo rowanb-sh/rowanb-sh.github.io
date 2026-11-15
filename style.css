@@ -5,6 +5,7 @@
     --card-border: rgba(226, 232, 240, 0.85);
     --text-primary: #0f172a;
     --text-muted: #475569;
+    --date-color: #1e293b; /* Более заметный цвет даты */
     --accent-blue: #2563eb;
     --accent-glow: rgba(37, 99, 235, 0.12);
     --tag-bg: rgba(37, 99, 235, 0.08);
@@ -18,33 +19,14 @@
     --orb-3: rgba(168, 85, 247, 0.18);
 }
 
-/* Тёмная тема: Dark */
+/* Тёмная тема: Dark (бывший Midnight) */
 body.theme-dark {
-    --bg-main: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.78);
-    --card-border: rgba(51, 65, 85, 0.85);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #60a5fa;
-    --accent-glow: rgba(96, 165, 250, 0.18);
-    --tag-bg: rgba(96, 165, 250, 0.12);
-    --pill-bg: rgba(30, 41, 59, 0.75);
-    --pill-active-bg: #334155;
-    --pill-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    --pill-border: rgba(71, 85, 105, 0.7);
-
-    --orb-1: rgba(99, 102, 241, 0.25);
-    --orb-2: rgba(14, 165, 233, 0.22);
-    --orb-3: rgba(236, 72, 153, 0.18);
-}
-
-/* Тёмная тема: Midnight */
-body.theme-midnight {
     --bg-main: #070b14;
     --card-bg: rgba(17, 24, 39, 0.78);
     --card-border: rgba(30, 41, 59, 0.9);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
+    --date-color: #cbd5e1; /* Яркий контрастный цвет даты для темной темы */
     --accent-blue: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.25);
     --tag-bg: rgba(59, 130, 246, 0.15);
@@ -113,7 +95,7 @@ body {
     margin: 0 auto;
 }
 
-/* Верхняя строка (исправленное выравнивание controls в один ряд) */
+/* Верхняя строка */
 .top-utility-row {
     position: relative;
     z-index: 1000;
@@ -123,16 +105,18 @@ body {
     padding: 4px 2px 24px;
 }
 
+/* Более заметная дата */
 .current-date {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--date-color);
+    letter-spacing: -0.01em;
 }
 
 .top-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .lang-dropdown-wrapper,
@@ -140,22 +124,23 @@ body {
     position: relative;
 }
 
+/* Уменьшенные и аккуратные кнопки для мобильных устройств */
 .lang-btn,
 .theme-btn {
     background-color: var(--card-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 7px 14px;
+    padding: 5px 10px;
     border-radius: 999px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    gap: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -166,8 +151,8 @@ body {
 }
 
 .chevron-icon {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     stroke: var(--text-muted);
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -177,18 +162,18 @@ body {
     transform: rotate(180deg);
 }
 
-/* Выпадающие меню с плавной анимацией появления */
+/* Выпадающие меню */
 .dropdown-menu {
     position: absolute;
     right: 0;
-    top: 42px;
+    top: 38px;
     background-color: var(--card-bg);
     backdrop-filter: blur(18px);
     border: 1px solid var(--card-border);
     border-radius: 14px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
-    width: 190px;
-    max-height: 280px;
+    width: 175px;
+    max-height: 260px;
     overflow-y: auto;
     opacity: 0;
     visibility: hidden;
@@ -211,24 +196,24 @@ body {
     border: none;
     color: var(--text-primary);
     text-align: left;
-    padding: 9px 12px;
+    padding: 8px 10px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-family: 'Lora', Georgia, serif;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     transition: all 0.2s ease;
 }
 
 .dropdown-option:hover {
     background-color: var(--tag-bg);
     color: var(--accent-blue);
-    padding-left: 15px;
+    padding-left: 13px;
 }
 
-/* Навигация-пилюля */
+/* Навигация */
 .nav-wrapper {
     display: flex;
     justify-content: center;
@@ -425,7 +410,7 @@ body {
     transform: rotate(180deg);
 }
 
-/* Ультраплавное раскрытие контента через высоту */
+/* Плавное раскрытие */
 .collapsible-content {
     max-height: 0;
     overflow: hidden;

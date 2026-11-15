@@ -5,7 +5,7 @@
     --card-border: rgba(226, 232, 240, 0.85);
     --text-primary: #0f172a;
     --text-muted: #475569;
-    --date-color: #1e293b; /* Более заметный цвет даты */
+    --date-color: #1e293b;
     --accent-blue: #2563eb;
     --accent-glow: rgba(37, 99, 235, 0.12);
     --tag-bg: rgba(37, 99, 235, 0.08);
@@ -13,20 +13,21 @@
     --pill-active-bg: #ffffff;
     --pill-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
     --pill-border: rgba(203, 213, 225, 0.8);
+    --doodle-color: rgba(37, 99, 235, 0.07); /* Едва заметный синеватый контур для светлой темы */
     
     --orb-1: rgba(236, 72, 153, 0.22);
     --orb-2: rgba(59, 130, 246, 0.22);
     --orb-3: rgba(168, 85, 247, 0.18);
 }
 
-/* Тёмная тема: Dark (бывший Midnight) */
+/* Тёмная тема: Dark */
 body.theme-dark {
     --bg-main: #070b14;
     --card-bg: rgba(17, 24, 39, 0.78);
     --card-border: rgba(30, 41, 59, 0.9);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --date-color: #cbd5e1; /* Яркий контрастный цвет даты для темной темы */
+    --date-color: #cbd5e1;
     --accent-blue: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.25);
     --tag-bg: rgba(59, 130, 246, 0.15);
@@ -34,6 +35,7 @@ body.theme-dark {
     --pill-active-bg: #1e293b;
     --pill-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
     --pill-border: rgba(51, 65, 85, 0.7);
+    --doodle-color: rgba(255, 255, 255, 0.05); /* Тончайший белый контур для темной темы в стиле WhatsApp */
 
     --orb-1: rgba(59, 130, 246, 0.28);
     --orb-2: rgba(139, 92, 246, 0.25);
@@ -105,7 +107,6 @@ body {
     padding: 4px 2px 24px;
 }
 
-/* Более заметная дата */
 .current-date {
     font-size: 0.92rem;
     font-weight: 600;
@@ -124,7 +125,6 @@ body {
     position: relative;
 }
 
-/* Уменьшенные и аккуратные кнопки для мобильных устройств */
 .lang-btn,
 .theme-btn {
     background-color: var(--card-bg);
@@ -305,16 +305,44 @@ body {
     margin-bottom: 0;
 }
 
-/* Основной блок информации */
-.main-content-group {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-}
-
+/* Стили для фоновых узоров (Doodles) */
 .tab-section {
+    position: relative;
+    margin-bottom: 80px;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+.section-doodles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.doodle {
+    position: absolute;
+    stroke: var(--doodle-color);
+    fill: none;
+    opacity: 0.65;
+    transition: stroke 0.4s ease;
+}
+
+/* Расположение узоров по секциям */
+.work-doodles .d-1 { width: 70px; top: 10%; left: -20px; transform: rotate(-15deg); }
+.work-doodles .d-2 { width: 90px; bottom: 15%; right: -30px; transform: rotate(20deg); }
+.work-doodles .d-3 { width: 60px; top: 50%; right: 10px; transform: rotate(10deg); }
+
+.edu-doodles .d-1 { width: 80px; top: 5%; right: -25px; transform: rotate(15deg); }
+.edu-doodles .d-2 { width: 70px; bottom: 20%; left: -25px; transform: rotate(-10deg); }
+.edu-doodles .d-3 { width: 65px; top: 60%; right: 15px; transform: rotate(-25deg); }
+
+.skills-doodles .d-1 { width: 75px; top: 15%; left: -20px; transform: rotate(20deg); }
+.skills-doodles .d-2 { width: 85px; bottom: 10%; right: -25px; transform: rotate(-15deg); }
+.skills-doodles .d-3 { width: 60px; top: 45%; right: 5px; transform: rotate(5deg); }
 
 .tab-section.hidden {
     display: none;

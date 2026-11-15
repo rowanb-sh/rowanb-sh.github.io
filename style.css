@@ -78,7 +78,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.3s ease;
+    transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
 }
 
 /* 3D Блюр-сферы на фоне */
@@ -96,8 +96,8 @@ body {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(95px);
-    transition: background 0.5s ease;
+    filter: blur(100px);
+    transition: background 0.6s ease, transform 0.6s ease;
 }
 
 .orb-1 { width: 450px; height: 450px; background: var(--orb-1); top: -100px; left: -100px; animation: floatOrb1 14s ease-in-out infinite alternate; }
@@ -113,7 +113,7 @@ body {
     margin: 0 auto;
 }
 
-/* Верхняя строка */
+/* Верхняя строка (исправленное выравнивание controls в один ряд) */
 .top-utility-row {
     position: relative;
     z-index: 1000;
@@ -131,34 +131,16 @@ body {
 
 .top-controls {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
 }
 
-/* Кнопка переключения языка */
-.lang-btn {
-    background-color: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--card-border);
-    color: var(--text-primary);
-    padding: 7px 12px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-family: 'Lora', Georgia, serif;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.lang-btn:hover {
-    border-color: var(--accent-blue);
-}
-
+.lang-dropdown-wrapper,
 .theme-dropdown-wrapper {
     position: relative;
 }
 
+.lang-btn,
 .theme-btn {
     background-color: var(--card-bg);
     backdrop-filter: blur(12px);
@@ -172,53 +154,59 @@ body {
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.lang-btn:hover,
 .theme-btn:hover {
     border-color: var(--accent-blue);
+    transform: translateY(-1px);
 }
 
 .chevron-icon {
     width: 14px;
     height: 14px;
     stroke: var(--text-muted);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.lang-btn.open .chevron-icon,
 .theme-btn.open .chevron-icon {
     transform: rotate(180deg);
 }
 
-.theme-menu {
+/* Выпадающие меню с плавной анимацией появления */
+.dropdown-menu {
     position: absolute;
     right: 0;
     top: 42px;
     background-color: var(--card-bg);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
     border: 1px solid var(--card-border);
     border-radius: 14px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-    width: 170px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    width: 190px;
+    max-height: 280px;
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    transform: translateY(-10px) scale(0.96);
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
     padding: 6px;
     z-index: 2000;
 }
 
-.theme-menu.show {
+.dropdown-menu.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
-.theme-option {
+.dropdown-option {
     background: transparent;
     border: none;
     color: var(--text-primary);
@@ -231,12 +219,13 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: all 0.2s ease;
 }
 
-.theme-option:hover {
+.dropdown-option:hover {
     background-color: var(--tag-bg);
     color: var(--accent-blue);
+    padding-left: 15px;
 }
 
 /* Навигация-пилюля */
@@ -266,7 +255,7 @@ body {
     background-color: var(--pill-active-bg);
     border-radius: 999px;
     box-shadow: var(--pill-shadow);
-    transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), width 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
 }
 
@@ -282,7 +271,7 @@ body {
     font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     cursor: pointer;
-    transition: color 0.25s ease;
+    transition: color 0.3s ease;
     white-space: nowrap;
 }
 
@@ -299,6 +288,7 @@ body {
 .hero-clean {
     padding: 20px 8px 0;
     margin-bottom: 24vh;
+    transition: margin-bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero-clean h1 {
@@ -338,7 +328,7 @@ body {
 }
 
 .tab-section {
-    animation: fadeInTab 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .tab-section.hidden {
@@ -346,8 +336,12 @@ body {
 }
 
 @keyframes fadeInTab {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tab-section:not(.hidden) {
+    animation: fadeInTab 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .tab-section h2 {
@@ -364,12 +358,13 @@ body {
     border-radius: 16px;
     padding: 26px 28px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-block:hover {
     border-color: var(--accent-blue);
-    box-shadow: 0 10px 28px var(--accent-glow);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--accent-glow);
 }
 
 .block-header {
@@ -423,23 +418,29 @@ body {
 .details-toggle svg {
     width: 14px;
     height: 14px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .details-toggle.open svg {
     transform: rotate(180deg);
 }
 
+/* Ультраплавное раскрытие контента через высоту */
 .collapsible-content {
-    display: none;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid var(--card-border);
-    animation: fadeInTab 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+    border-top: 0 solid var(--card-border);
 }
 
 .collapsible-content.expanded {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--card-border);
 }
 
 .task-list {
@@ -491,9 +492,11 @@ body {
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
 .portfolio-footer-links a:hover {
+    opacity: 0.75;
     text-decoration: underline;
 }
 

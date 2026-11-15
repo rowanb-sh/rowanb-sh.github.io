@@ -483,82 +483,39 @@ window.addEventListener('resize', () => {
     if (activeTab) moveGlider(activeTab);
 });
 
-// === SPECIAL MODE (Разлом в бездну на 3 секунды с автозакрытием) ===
-function triggerSpecialMode() {
-    const body = document.body;
+// === АВТОМАТИЧЕСКИЙ ХАОС НА ПРОСТЫХ ЧИСЛАХ ===
+const primeIntervals = [7, 11, 13, 17, 19, 23, 29, 31, 37];
+let primeIndex = 0;
+
+function scheduleNextGlitch() {
+    const currentSeconds = primeIntervals[primeIndex];
     
-    let overlay = document.getElementById('spaceFractureOverlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'spaceFractureOverlay';
-        overlay.className = 'space-fracture-overlay';
-        
-        overlay.innerHTML = `
-            <svg class="fracture-crack" viewBox="0 0 500 500" fill="none" stroke-width="3">
-                <path d="M250 250 L100 60 M250 250 L400 70 M250 250 L440 200 M250 250 L370 410 M250 250 L210 460 M250 250 L80 390 M250 250 L50 180" stroke-linecap="round"/>
-                <path d="M100 60 L40 30 M100 60 L160 20 M400 70 L470 40 M400 70 L350 10 M440 200 L500 160 M440 200 L480 270 M370 410 L420 480 M370 410 L280 470 M210 460 L150 490 M80 390 L20 440 M80 390 L30 300 M50 180 L10 120" stroke-linecap="round" opacity="0.8"/>
-                <polygon points="250,250 160,110 210,90" fill="rgba(147,51,234,0.35)" stroke="none"/>
-                <polygon points="250,250 350,130 390,210" fill="rgba(59,130,246,0.35)" stroke="none"/>
-                <polygon points="250,250 300,380 200,410" fill="rgba(236,72,153,0.35)" stroke="none"/>
-            </svg>
-        `;
-        
-        for (let i = 0; i < 14; i++) {
-            const shard = document.createElement('div');
-            shard.className = 'glass-shard';
-            const size = 18 + Math.random() * 35;
-            shard.style.width = `${size}px`;
-            shard.style.height = `${size}px`;
-            shard.style.top = '50%';
-            shard.style.left = '50%';
-            
-            const angle = (i / 14) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
-            const distance = 180 + Math.random() * 280;
-            const tx = Math.cos(angle) * distance;
-            const ty = Math.sin(angle) * distance;
-            const trot = (Math.random() - 0.5) * 400;
-            
-            shard.style.setProperty('--tx', `${tx}px`);
-            shard.style.setProperty('--ty', `${ty}px`);
-            shard.style.setProperty('--trot', `${trot}deg`);
-            
-            overlay.appendChild(shard);
-        }
-        
-        document.body.appendChild(overlay);
-    }
+    // Переходим к следующему простому числу, после 37 сбрасываем на 0 (снова 7 секунд)
+    primeIndex = (primeIndex + 1) % primeIntervals.length;
 
-    // Активируем разлом и глитчи
-    overlay.classList.add('active');
-    body.classList.add('glitch-mode');
-
-    // Автоматически убираем через 3 секунды
     setTimeout(() => {
-        overlay.classList.remove('active');
-        body.classList.remove('glitch-mode');
-    }, 3000);
+        triggerPartialChaos();
+        scheduleNextGlitch(); // Планируем следующий сбой
+    }, currentSeconds * 1000);
 }
 
+function triggerPartialChaos() {
+    // Выбираем случайные элементы для локального сбоя (например, заголовки карточек или подзаголовки)
+    const targets = document.querySelectorAll('.card-block h3, .hero-subtitle, .block-date, .current-date');
+    if (targets.length === 0) return;
 
-function glitchTextElements(enable) {
-    const elements = document.querySelectorAll('h1, h2, .hero-subtitle, .block-sub');
+    // Берем 1 или 2 случайных элемента из доступных
+    const randomTarget = targets[Math.floor(Math.random() * targets.length)];
     
-    elements.forEach(el => {
-        if (enable) {
-            if (!originalTextsMap.has(el)) {
-                originalTextsMap.set(el, el.textContent);
-            }
-            const text = originalTextsMap.get(el);
-            const glitched = text.split('').map(char => {
-                if (char.trim() === '' || Math.random() > 0.25) return char;
-                const symbols = '#$%&<>_?/~\\⚡404';
-                return symbols[Math.floor(Math.random() * symbols.length)];
-            }).join('');
-            el.textContent = glitched;
-        } else {
-            if (originalTextsMap.has(el)) {
-                el.textContent = originalTextsMap.get(el);
-            }
-        }
-    });
+    // Включаем глитч на 2.5 секунды
+    randomTarget.classList.add('element-glitch');
+    
+    setTimeout(() => {
+        randomTarget.classList.remove('element-glitch');
+    }, 2500);
 }
+
+// Запускаем таймер хаоса после полной загрузки страницы
+window.addEventListener('DOMContentLoaded', () => {
+    scheduleNextGlitch();
+});

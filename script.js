@@ -483,7 +483,7 @@ window.addEventListener('resize', () => {
     if (activeTab) moveGlider(activeTab);
 });
 
-// === SPECIAL MODE (Глюк-режим и Портал в другую вселенную) ===
+// === SPECIAL MODE (Космический разлом и Глюк-режим) ===
 let isSpecialActive = false;
 const originalTextsMap = new Map();
 
@@ -491,11 +491,46 @@ function triggerSpecialMode() {
     isSpecialActive = !isSpecialActive;
     const body = document.body;
     
-    let overlay = document.getElementById('portalOverlay');
+    let overlay = document.getElementById('spaceFractureOverlay');
     if (!overlay) {
         overlay = document.createElement('div');
-        overlay.id = 'portalOverlay';
-        overlay.className = 'portal-overlay';
+        overlay.id = 'spaceFractureOverlay';
+        overlay.className = 'space-fracture-overlay';
+        
+        // SVG-паутина трещин в стиле аниме-разлома
+        overlay.innerHTML = `
+            <svg class="fracture-crack" viewBox="0 0 500 500" fill="none" stroke-width="2">
+                <path d="M250 250 L120 80 M250 250 L380 90 M250 250 L420 220 M250 250 L390 380 M250 250 L230 440 M250 250 L90 370 M250 250 L60 200" stroke-linecap="round"/>
+                <path d="M120 80 L70 50 M120 80 L180 40 M380 90 L440 60 M380 90 L340 30 M420 220 L480 190 M420 220 L470 280 M390 380 L430 450 M390 380 L310 460 M230 440 L180 480 M90 370 L30 410 M90 370 L40 300 M60 200 L20 150" stroke-linecap="round" opacity="0.7"/>
+                <polygon points="250,250 180,150 230,120" fill="rgba(168,85,247,0.2)" stroke="none"/>
+                <polygon points="250,250 340,180 380,240" fill="rgba(56,189,248,0.2)" stroke="none"/>
+                <polygon points="250,250 280,350 200,380" fill="rgba(236,72,153,0.2)" stroke="none"/>
+            </svg>
+        `;
+        
+        // Генерация летящих осколков стекла
+        for (let i = 0; i < 12; i++) {
+            const shard = document.createElement('div');
+            shard.className = 'glass-shard';
+            const size = 15 + Math.random() * 30;
+            shard.style.width = `${size}px`;
+            shard.style.height = `${size}px`;
+            shard.style.top = '50%';
+            shard.style.left = '50%';
+            
+            const angle = (i / 12) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+            const distance = 150 + Math.random() * 250;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance;
+            const trot = (Math.random() - 0.5) * 360;
+            
+            shard.style.setProperty('--tx', `${tx}px`);
+            shard.style.setProperty('--ty', `${ty}px`);
+            shard.style.setProperty('--trot', `${trot}deg`);
+            
+            overlay.appendChild(shard);
+        }
+        
         document.body.appendChild(overlay);
     }
 
@@ -504,7 +539,7 @@ function triggerSpecialMode() {
         setTimeout(() => {
             body.classList.add('glitch-mode');
             glitchTextElements(true);
-        }, 700);
+        }, 400);
     } else {
         overlay.classList.remove('active');
         body.classList.remove('glitch-mode');

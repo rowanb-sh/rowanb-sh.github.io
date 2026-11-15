@@ -19,12 +19,12 @@
     </div>
 
     <div class="portfolio-container">
-        <!-- Верхняя строка: дата слева, выбор языка и темы справа (исправлено выравнивание в один ряд) -->
+        <!-- Верхняя строка: дата слева, выбор языка и темы справа -->
         <div class="top-utility-row">
             <span class="current-date" id="currentDate">Sunday, 15 November</span>
 
             <div class="top-controls">
-                <!-- Выпадающий список языков (10 популярных языков) -->
+                <!-- Выпадающий список языков -->
                 <div class="lang-dropdown-wrapper">
                     <button class="lang-btn" id="langMenuBtn" onclick="toggleLangMenu()">
                         <span id="activeLangText">EN</span>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <!-- Выбор темы -->
+                <!-- Выбор темы (Light / Dark) -->
                 <div class="theme-dropdown-wrapper">
                     <button class="theme-btn" id="themeMenuBtn" onclick="toggleThemeMenu()">
                         <span id="activeThemeIcon">☀️</span>
@@ -56,9 +56,8 @@
                         </svg>
                     </button>
                     <div class="dropdown-menu" id="themeMenu">
-                        <button class="dropdown-option" onclick="setTheme('light')"><span>☀️</span> Light</button>
-                        <button class="dropdown-option" onclick="setTheme('dark')"><span>🌙</span> Dark</button>
-                        <button class="dropdown-option" onclick="setTheme('midnight')"><span>🌌</span> Midnight</button>
+                        <button class="dropdown-option" onclick="setTheme('light')"><span>☀️</span> <span data-i18n="theme_light">Light</span></button>
+                        <button class="dropdown-option" onclick="setTheme('dark')"><span>🌙</span> <span data-i18n="theme_dark">Dark</span></button>
                     </div>
                 </div>
             </div>
@@ -99,7 +98,7 @@
                     <p class="block-sub" data-i18n="exp_sub">Safety &amp; Fleet Department (US Logistics)</p>
                     
                     <button class="details-toggle" onclick="toggleDetails(this)">
-                        <span data-i18n="btn_show_details">Show details</span>
+                        <span data-i18n="btn_show">Show details</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                     
@@ -126,7 +125,7 @@
                         <p class="block-sub" data-i18n="edu_wiut_sub">Certificate of International Foundation Studies (CIFS)</p>
                         
                         <button class="details-toggle" onclick="toggleDetails(this)">
-                            <span data-i18n="btn_show_modules">Show modules</span>
+                            <span data-i18n="btn_show">Show details</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         
@@ -143,7 +142,7 @@
                         <p class="block-sub" data-i18n="edu_lyc_sub">Exact Sciences (GPA: 4.0 / 5.0)</p>
                         
                         <button class="details-toggle" onclick="toggleDetails(this)">
-                            <span data-i18n="btn_show_subjects">Show subjects</span>
+                            <span data-i18n="btn_show">Show details</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         
@@ -163,7 +162,7 @@
                         <p class="block-sub" style="margin-bottom: 0;" data-i18n="skills_analyt_sub">Data Analysis, Finance Basics &amp; Compliance</p>
                         
                         <button class="details-toggle" onclick="toggleDetails(this)">
-                            <span data-i18n="btn_show_skills">Show skills</span>
+                            <span data-i18n="btn_show">Show details</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         
@@ -177,7 +176,7 @@
                         <p class="block-sub" style="margin-bottom: 0;" data-i18n="skills_lang_sub">Russian &amp; English</p>
                         
                         <button class="details-toggle" onclick="toggleDetails(this)">
-                            <span data-i18n="btn_show_prof">Show proficiency</span>
+                            <span data-i18n="btn_show">Show details</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         

@@ -9,14 +9,11 @@ function updateDate(lang) {
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
     const locale = locales[lang] || 'en-US';
     let dateStr = new Date().toLocaleDateString(locale, options);
-    
-    // Делаем первую букву всегда заглавной
     dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-    
     document.getElementById('currentDate').textContent = dateStr;
 }
 
-// Словарь переводов
+// Словарь переводов для 10 популярных языков
 const translations = {
     en: {
         nav_all: "All", nav_exp: "Experience", nav_edu: "Education", nav_skills: "Skills",
@@ -47,10 +44,8 @@ const translations = {
         skills_analyt_text: "Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.",
         skills_lang_title: "Languages", skills_lang_sub: "Russian & English",
         skills_lang_text: "Russian (Native), English (B2 - IELTS certified).",
-        footer_email: "Email"
+        footer_email: "Email",
         special_btn: "Special Mode"
-        
-
     },
     ru: {
         nav_all: "Все", nav_exp: "Опыт", nav_edu: "Учеба", nav_skills: "Навыки",
@@ -81,10 +76,8 @@ const translations = {
         skills_analyt_text: "Количественный анализ данных, основы финансов, соблюдение SOP, онбординг персонала, отчетность по сменам, веб-трекинг ELD.",
         skills_lang_title: "Языки", skills_lang_sub: "Русский и английский",
         skills_lang_text: "Русский (родной), английский (B2 — сертификат IELTS).",
-        footer_email: "Почта"
+        footer_email: "Почта",
         special_btn: "Спец. режим"
-        
-
     },
     uz: {
         nav_all: "Barchasi", nav_exp: "Tajriba", nav_edu: "Ta'lim", nav_skills: "Ko'nikmalar",
@@ -115,7 +108,7 @@ const translations = {
         skills_analyt_text: "Miqdoriy ma'lumotlar tahlili, Moliya asoslari, SOP qoidalariga rioya qilish, Xodimlarni ishga tushirish, Smena hisobotlari, ELD veb-kuzatuvi.",
         skills_lang_title: "Tillar", skills_lang_sub: "Rus va ingliz tillari",
         skills_lang_text: "Rus tili (ona tili), Ingliz tili (B2 - IELTS sertifikati).",
-        footer_email: "Elektron pochta"
+        footer_email: "Elektron pochta",
         special_btn: "Maxsus rejim"
     },
     es: {
@@ -147,8 +140,8 @@ const translations = {
         skills_analyt_text: "Análisis de Datos Cuantitativos, Finanzas Básicas, Cumplimiento de SOP, Incorporación de Personal, Informes de Turno, Rastreo Web ELD.",
         skills_lang_title: "Idiomas", skills_lang_sub: "Ruso e Inglés",
         skills_lang_text: "Ruso (Nativo), Inglés (B2 - certificado IELTS).",
-        footer_email: "Correo electrónico"
-        special_btn:"Modo Especial"
+        footer_email: "Correo electrónico",
+        special_btn: "Modo Especial"
     },
     fr: {
         nav_all: "Tout", nav_exp: "Expérience", nav_edu: "Éducation", nav_skills: "Compétences",
@@ -179,9 +172,8 @@ const translations = {
         skills_analyt_text: "Analyse de données quantitatives, bases financières, conformité SOP, intégration du personnel, rapports d'équipe, suivi web ELD.",
         skills_lang_title: "Langues", skills_lang_sub: "Russe et Anglais",
         skills_lang_text: "Russe (Natif), Anglais (B2 - certifié IELTS).",
-        footer_email: "E-mail"
-        special_btn:"Mode Spécial"
-        
+        footer_email: "E-mail",
+        special_btn: "Mode Spécial"
     },
     de: {
         nav_all: "Alle", nav_exp: "Erfahrung", nav_edu: "Bildung", nav_skills: "Fähigkeiten",
@@ -212,8 +204,8 @@ const translations = {
         skills_analyt_text: "Quantitative Datenanalyse, Finanzgrundlagen, SOP-Einhaltung, Personaleinarbeitung, Schichtberichte, ELD-Web-Tracking.",
         skills_lang_title: "Sprachen", skills_lang_sub: "Russisch & Englisch",
         skills_lang_text: "Russisch (Muttersprache), Englisch (B2 - IELTS zertifiziert).",
-        footer_email: "E-Mail"
-        special_btn:"Spezialmodus"
+        footer_email: "E-Mail",
+        special_btn: "Spezialmodus"
     },
     it: {
         nav_all: "Tutti", nav_exp: "Esperienza", nav_edu: "Formazione", nav_skills: "Competenze",
@@ -225,7 +217,7 @@ const translations = {
         hero_p3: "Dedicato alla risoluzione strutturata dei problemi e alla continua crescita professionale.",
         exp_heading: "Esperienza Professionale",
         exp_title: "Manager della Salute e Sicurezza nel Trasporto su Strada",
-        exp_sub: "Dipartimento Sicurezza e Flota (Logistica USA)",
+        exp_sub: "Dipartimento Sicurezza e Flotta (Logistica USA)",
         btn_show: "Mostra dettagli", btn_hide: "Nascondi dettagli",
         exp_li1: "Monitoraggio e audit dei registri delle Ore di Servizio (HOS) dei conducenti tramite sistemi ELD per garantire la conformità al 100% con le normative FMCSA e DOT.",
         exp_li2: "Controllo operativo giornaliero dei turni, monitoraggio delle metriche di prestazione e gestione dello stato delle attività.",
@@ -244,8 +236,8 @@ const translations = {
         skills_analyt_text: "Analisi dati quantitativi, Nozioni di base finanziarie, Conformità SOP, Onboarding del personale, Report di turno, Tracciamento web ELD.",
         skills_lang_title: "Lingue", skills_lang_sub: "Russo e Inglese",
         skills_lang_text: "Russo (Madrelingua), Inglese (B2 - certificato IELTS).",
-        footer_email: "Email"
-       special_btn:"Modalità Speciale"
+        footer_email: "Email",
+        special_btn: "Modalità Speciale"
     },
     zh: {
         nav_all: "全部", nav_exp: "经历", nav_edu: "教育", nav_skills: "技能",
@@ -262,7 +254,7 @@ const translations = {
         exp_li1: "通过电子日志设备（ELD）系统监控和审计司机服务时间（HOS）日志，确保100%符合FMCSA和DOT法规。",
         exp_li2: "进行每日班次运营控制，跟踪目标绩效指标，并管理活跃任务状态。",
         exp_li3: "为管理层准备全面的交接班报告，确保业务连续性和透明度。",
-        exp_li4: "在新员工的运营工作流程、合规SOP和ELD故障排除方面进行入职培训。",
+        exp_li4: "在新员工的工作流程、合规SOP和ELD故障排除方面进行入职培训。",
         edu_heading: "教育与培训",
         edu_wiut_title: "塔什干威斯敏斯特国际大学",
         edu_wiut_sub: "国际预科证书（CIFS）",
@@ -276,8 +268,8 @@ const translations = {
         skills_analyt_text: "定量数据分析、财务基础、SOP合规、员工入职、换班报告、ELD网络跟踪。",
         skills_lang_title: "语言", skills_lang_sub: "俄语与英语",
         skills_lang_text: "俄语（母语）、英语（B2 - IELTS认证）。",
-        footer_email: "电子邮箱"
-        special_btn:"特殊模式"
+        footer_email: "电子邮箱",
+        special_btn: "特殊模式"
     },
     ar: {
         nav_all: "الكل", nav_exp: "الخبرة", nav_edu: "التعليم", nav_skills: "المهارات",
@@ -306,10 +298,10 @@ const translations = {
         skills_analyt_title: "التحليلية والتشغيلية",
         skills_analyt_sub: "تحليل البيانات، أساسيات التمويل والامتثال",
         skills_analyt_text: "تحليل البيانات الكمية، أساسيات التمويل، الامتثال لإجراءات SOP، تأهيل الموظفين، تقارير الورديات، تتبع ELD عبر الويب.",
-        skills_lang_title: "اللغات", skills_lang_sub: "الروسية والإنجليزية",
+        skills_lang_title: "اللغات", skills_lang_sub: "اللغة الروسية والإنجليزية",
         skills_lang_text: "الروسية (اللغة الأم)، الإنجليزية (B2 - معتمدة من IELTS).",
-        footer_email: "البريد الإلكتروني"
-        special_btn:"وضع خاص"
+        footer_email: "البريد الإلكتروني",
+        special_btn: "وضع خاص"
     },
     tr: {
         nav_all: "Tümü", nav_exp: "Deneyim", nav_edu: "Eğitim", nav_skills: "Yetenekler",
@@ -340,8 +332,8 @@ const translations = {
         skills_analyt_text: "Nicel Veri Analizi, Finans Temelleri, SOP Uyumluluğu, Personel Oryantasyonu, Vardiya Raporlaması, ELD Web Takibi.",
         skills_lang_title: "Diller", skills_lang_sub: "Rusça ve İngilizce",
         skills_lang_text: "Rusça (Anadil), İngilizce (B2 - IELTS sertifikalı).",
-        footer_email: "E-posta"
-        special_btn:"Özel Mod"
+        footer_email: "E-posta",
+        special_btn: "Özel Mod"
     }
 };
 
@@ -352,10 +344,8 @@ function setLanguage(lang) {
     document.getElementById('activeLangText').textContent = lang.toUpperCase();
     localStorage.setItem('portfolio_lang', lang);
 
-    // Обновляем дату в зависимости от выбранного языка
     updateDate(lang);
 
-    // Обновляем тексты на сайте
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -363,7 +353,6 @@ function setLanguage(lang) {
         }
     });
 
-    // Обновляем название активной темы на кнопке
     const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
     setThemeText(currentTheme);
 
@@ -485,7 +474,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const initialActiveTab = document.querySelector('.nav-tab.active');
     if (initialActiveTab) {
-        moveGlider(initialActiveTab);
+        moveGlider(initialActiveTab.active || initialActiveTab);
     }
 });
 
@@ -502,7 +491,6 @@ function triggerSpecialMode() {
     isSpecialActive = !isSpecialActive;
     const body = document.body;
     
-    // Создаем элемент портала динамически, если его еще нет
     let overlay = document.getElementById('portalOverlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -512,24 +500,18 @@ function triggerSpecialMode() {
     }
 
     if (isSpecialActive) {
-        // Шаг 1: Запуск анимации черной дыры / портала
         overlay.classList.add('active');
-        
-        // Шаг 2: Через 700мс включаем цифровой глюк-хаос
         setTimeout(() => {
             body.classList.add('glitch-mode');
             glitchTextElements(true);
         }, 700);
-
     } else {
-        // Возвращаем всё в реальный мир
         overlay.classList.remove('active');
         body.classList.remove('glitch-mode');
         glitchTextElements(false);
     }
 }
 
-// Функция рандомного искажения букв в текстах
 function glitchTextElements(enable) {
     const elements = document.querySelectorAll('h1, h2, .hero-subtitle, .block-sub');
     
@@ -539,7 +521,6 @@ function glitchTextElements(enable) {
                 originalTextsMap.set(el, el.textContent);
             }
             const text = originalTextsMap.get(el);
-            // Заменяем часть символов на киберпанк-символы
             const glitched = text.split('').map(char => {
                 if (char.trim() === '' || Math.random() > 0.25) return char;
                 const symbols = '#$%&<>_?/~\\⚡404';

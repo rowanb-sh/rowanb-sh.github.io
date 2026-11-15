@@ -482,3 +482,63 @@ window.addEventListener('resize', () => {
     const activeTab = document.querySelector('.nav-tab.active');
     if (activeTab) moveGlider(activeTab);
 });
+
+// === SPECIAL MODE (Глюк-режим и Портал в другую вселенную) ===
+let isSpecialActive = false;
+const originalTextsMap = new Map();
+
+function triggerSpecialMode() {
+    isSpecialActive = !isSpecialActive;
+    const body = document.body;
+    
+    // Создаем элемент портала динамически, если его еще нет
+    let overlay = document.getElementById('portalOverlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'portalOverlay';
+        overlay.className = 'portal-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    if (isSpecialActive) {
+        // Шаг 1: Запуск анимации черной дыры / портала
+        overlay.classList.add('active');
+        
+        // Шаг 2: Через 700мс включаем цифровой глюк-хаос
+        setTimeout(() => {
+            body.classList.add('glitch-mode');
+            glitchTextElements(true);
+        }, 700);
+
+    } else {
+        // Возвращаем всё в реальный мир
+        overlay.classList.remove('active');
+        body.classList.remove('glitch-mode');
+        glitchTextElements(false);
+    }
+}
+
+// Функция рандомного искажения букв в текстах
+function glitchTextElements(enable) {
+    const elements = document.querySelectorAll('h1, h2, .hero-subtitle, .block-sub');
+    
+    elements.forEach(el => {
+        if (enable) {
+            if (!originalTextsMap.has(el)) {
+                originalTextsMap.set(el, el.textContent);
+            }
+            const text = originalTextsMap.get(el);
+            // Заменяем часть символов на киберпанк-символы
+            const glitched = text.split('').map(char => {
+                if (char.trim() === '' || Math.random() > 0.25) return char;
+                const symbols = '#$%&<>_?/~\\⚡404';
+                return symbols[Math.floor(Math.random() * symbols.length)];
+            }).join('');
+            el.textContent = glitched;
+        } else {
+            if (originalTextsMap.has(el)) {
+                el.textContent = originalTextsMap.get(el);
+            }
+        }
+    });
+}

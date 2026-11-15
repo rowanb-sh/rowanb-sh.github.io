@@ -10,11 +10,8 @@ function updateDate(lang) {
     const locale = locales[lang] || 'en-US';
     let dateStr = new Date().toLocaleDateString(locale, options);
     
-    // Делаем первую букву строчной для языков, где дни недели пишутся с маленькой буквы
-    const lowercaseLangs = ['ru', 'uz', 'es', 'fr', 'it', 'tr', 'ar'];
-    if (lowercaseLangs.includes(lang)) {
-        dateStr = dateStr.charAt(0).toLowerCase() + dateStr.slice(1);
-    }
+    // Делаем первую букву всегда заглавной
+    dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
     
     document.getElementById('currentDate').textContent = dateStr;
 }

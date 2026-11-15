@@ -595,3 +595,17 @@ body.glitch-mode .card-block {
     0% { opacity: 0.92; transform: skewX(-1deg) translateY(0); }
     100% { opacity: 1; transform: skewX(1deg) translateY(-1px); }
 }
+
+/* Выборочный глитч для случайных элементов */
+.element-glitch {
+    position: relative;
+    text-shadow: 2px 0 #ff007f, -2px 0 #00f0ff !important;
+    animation: partialGlitchAnim 0.15s infinite alternate !important;
+}
+
+@keyframes partialGlitchAnim {
+    0% { transform: translate(0, 0) skewX(0deg); opacity: 0.85; }
+    50% { transform: translate(-2px, 1px) skewX(-2deg); opacity: 1; }
+    100% { transform: translate(2px, -1px) skewX(2deg); opacity: 0.9; }
+}
+

@@ -555,7 +555,7 @@ body {
     box-shadow: 0 6px 25px var(--accent-blue);
 }
 
-/* === НАСТОЯЩИЙ РАЗЛОМ В БЕЗДНУ (В стиле референса) === */
+/* === ИСПРАВЛЕННЫЙ КОСМИЧЕСКИЙ РАЗЛОМ === */
 .space-fracture-overlay {
     position: fixed;
     top: 0;
@@ -566,85 +566,53 @@ body {
     z-index: 9999;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease;
 }
 
 .space-fracture-overlay.active {
     opacity: 1;
 }
 
-/* Глубокая бездна по центру, разрывающая экран */
+/* Космическая дымка по краям экрана, оставляющая центр видимым */
 .space-fracture-overlay::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0vw;
-    height: 0vh;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, #05030a 0%, #120826 40%, #000000 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 100px rgba(168, 85, 247, 0.85), inset 0 0 60px rgba(59, 130, 246, 0.7);
-    z-index: 1;
-    transition: width 1s cubic-bezier(0.19, 1, 0.22, 1), height 1s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.space-fracture-overlay.active::before {
-    width: 150vw;
-    height: 150vh;
-    border-radius: 0%;
-}
-
-/* Космическая туманность внутри разлома */
-.abyss-nebula {
-    position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.4) 0%, rgba(30, 58, 138, 0.25) 50%, transparent 80%);
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.8s ease 0.3s;
-    animation: nebulaPulse 6s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 50% 50%, transparent 25%, rgba(15, 5, 30, 0.8) 75%, rgba(5, 2, 10, 0.95) 100%);
+    backdrop-filter: blur(1.5px);
+    z-index: 1;
 }
 
-.space-fracture-overlay.active .abyss-nebula {
-    opacity: 1;
-}
-
-@keyframes nebulaPulse {
-    0% { transform: scale(1) rotate(0deg); }
-    100% { transform: scale(1.1) rotate(5deg); }
-}
-
-/* Трещины и рваные края разлома */
+/* Трещины и разломы по центру */
 .fracture-crack {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 95vmin;
-    height: 95vmin;
-    transform: translate(-50%, -50%) scale(0.1);
+    width: 100vmin;
+    height: 100vmin;
+    transform: translate(-50%, -50%) scale(0.2);
     opacity: 0;
-    transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
     z-index: 3;
-    stroke: #d8b4fe;
-    filter: drop-shadow(0 0 18px #a855f7) drop-shadow(0 0 35px #3b82f6);
+    stroke: #e9d5ff;
+    filter: drop-shadow(0 0 15px #c084fc) drop-shadow(0 0 30px #38bdf8);
 }
 
 .space-fracture-overlay.active .fracture-crack {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.1);
     opacity: 1;
 }
 
-/* Кристаллические осколки с фиолетово-синим свечением */
+/* Кристаллические осколки стекла */
 .glass-shard {
     position: absolute;
-    background: linear-gradient(135deg, rgba(216,180,254,0.65), rgba(96,165,250,0.35));
-    border: 1.5px solid rgba(233,213,255,0.9);
-    box-shadow: 0 0 22px rgba(168, 85, 247, 0.85), inset 0 0 12px rgba(59, 130, 246, 0.7);
+    background: linear-gradient(135deg, rgba(233,213,255,0.7), rgba(56,189,248,0.4));
+    border: 1.5px solid rgba(255,255,255,0.9);
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.9);
     z-index: 4;
     opacity: 0;
     transform: scale(0) rotate(0deg);
-    transition: all 1s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 .space-fracture-overlay.active .glass-shard {
@@ -652,7 +620,7 @@ body {
     transform: scale(1) translate(var(--tx), var(--ty)) rotate(var(--trot));
 }
 
-/* === ВОЗВРАТ СТАРЫХ КРАСИВЫХ ГЛИЧЕЙ (Фиолетово-розовый неон и тряска) === */
+/* Возврат любимых неоновых глитчей */
 body.glitch-mode {
     animation: screenGlitch 0.25s infinite;
     filter: hue-rotate(290deg) contrast(140%) saturate(130%);
@@ -679,7 +647,6 @@ body.glitch-mode::before {
     100% { transform: translate(0, 0); }
 }
 
-/* Неоновый эффект и дрожание текстов и блоков (текст остается читаемым!) */
 body.glitch-mode h1, 
 body.glitch-mode h2, 
 body.glitch-mode p,

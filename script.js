@@ -483,11 +483,8 @@ window.addEventListener('resize', () => {
     if (activeTab) moveGlider(activeTab);
 });
 
-// === SPECIAL MODE (Настоящий разлом в бездну и неоновые гличи) ===
-let isSpecialActive = false;
-
+// === SPECIAL MODE (Разлом в бездну на 3 секунды с автозакрытием) ===
 function triggerSpecialMode() {
-    isSpecialActive = !isSpecialActive;
     const body = document.body;
     
     let overlay = document.getElementById('spaceFractureOverlay');
@@ -496,19 +493,16 @@ function triggerSpecialMode() {
         overlay.id = 'spaceFractureOverlay';
         overlay.className = 'space-fracture-overlay';
         
-        // Добавляем туманность и рваные края бездны
         overlay.innerHTML = `
-            <div class="abyss-nebula"></div>
             <svg class="fracture-crack" viewBox="0 0 500 500" fill="none" stroke-width="3">
                 <path d="M250 250 L100 60 M250 250 L400 70 M250 250 L440 200 M250 250 L370 410 M250 250 L210 460 M250 250 L80 390 M250 250 L50 180" stroke-linecap="round"/>
                 <path d="M100 60 L40 30 M100 60 L160 20 M400 70 L470 40 M400 70 L350 10 M440 200 L500 160 M440 200 L480 270 M370 410 L420 480 M370 410 L280 470 M210 460 L150 490 M80 390 L20 440 M80 390 L30 300 M50 180 L10 120" stroke-linecap="round" opacity="0.8"/>
-                <polygon points="250,250 160,110 210,90" fill="rgba(147,51,234,0.3)" stroke="none"/>
-                <polygon points="250,250 350,130 390,210" fill="rgba(59,130,246,0.3)" stroke="none"/>
-                <polygon points="250,250 300,380 200,410" fill="rgba(236,72,153,0.3)" stroke="none"/>
+                <polygon points="250,250 160,110 210,90" fill="rgba(147,51,234,0.35)" stroke="none"/>
+                <polygon points="250,250 350,130 390,210" fill="rgba(59,130,246,0.35)" stroke="none"/>
+                <polygon points="250,250 300,380 200,410" fill="rgba(236,72,153,0.35)" stroke="none"/>
             </svg>
         `;
         
-        // Генерация летящих осколков
         for (let i = 0; i < 14; i++) {
             const shard = document.createElement('div');
             shard.className = 'glass-shard';
@@ -534,15 +528,15 @@ function triggerSpecialMode() {
         document.body.appendChild(overlay);
     }
 
-    if (isSpecialActive) {
-        overlay.classList.add('active');
-        setTimeout(() => {
-            body.classList.add('glitch-mode');
-        }, 400);
-    } else {
+    // Активируем разлом и глитчи
+    overlay.classList.add('active');
+    body.classList.add('glitch-mode');
+
+    // Автоматически убираем через 3 секунды
+    setTimeout(() => {
         overlay.classList.remove('active');
         body.classList.remove('glitch-mode');
-    }
+    }, 3000);
 }
 
 

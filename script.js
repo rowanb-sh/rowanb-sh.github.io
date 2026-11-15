@@ -484,7 +484,7 @@ window.addEventListener('resize', () => {
 });
 
 // === АВТОМАТИЧЕСКИЙ ХАОС НА ПРОСТЫХ ЧИСЛАХ ===
-const primeIntervals = [7, 11, 13, 17, 19, 23, 29, 31, 37];
+const primeIntervals = [7, 11, 13, 17, 19, 23];
 let primeIndex = 0;
 
 function scheduleNextGlitch() {

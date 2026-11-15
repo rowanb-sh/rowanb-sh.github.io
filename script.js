@@ -48,6 +48,7 @@ const translations = {
         skills_lang_title: "Languages", skills_lang_sub: "Russian & English",
         skills_lang_text: "Russian (Native), English (B2 - IELTS certified).",
         footer_email: "Email"
+        special_btn: "Special Mode"
         
 
     },
@@ -81,6 +82,7 @@ const translations = {
         skills_lang_title: "Языки", skills_lang_sub: "Русский и английский",
         skills_lang_text: "Русский (родной), английский (B2 — сертификат IELTS).",
         footer_email: "Почта"
+        special_btn: "Спец. режим"
         
 
     },

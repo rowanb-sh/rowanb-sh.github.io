@@ -555,63 +555,73 @@ body {
     box-shadow: 0 6px 25px var(--accent-blue);
 }
 
-/* === ЭФФЕКТЫ GLITCH & PORTAL === */
-
-/* Наложение портала при активации */
-.portal-overlay {
+/* === КОСМИЧЕСКИЙ РАЗЛОМ И ОСКОЛКИ (В стиле референса) === */
+.space-fracture-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vw;
-    background: radial-gradient(circle, #000000 0%, #070b14 100%);
-    z-index: 99999;
-    opacity: 0;
+    height: 100vh;
     pointer-events: none;
-    transform: scale(0);
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
-}
-
-.portal-overlay.active {
-    opacity: 1;
-    transform: scale(2.5);
-}
-
-/* Глюк-режим для Body */
-body.glitch-mode {
-    animation: screenGlitch 0.2s infinite;
-    filter: hue-rotate(90deg) contrast(130%);
-}
-
-body.glitch-mode::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     z-index: 9999;
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-@keyframes screenGlitch {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-3px, 3px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -1px); }
-    80% { transform: translate(3px, 2px); }
-    100% { transform: translate(0, 0); }
+.space-fracture-overlay.active {
+    opacity: 1;
 }
 
-/* Искажение текста в glitch-режиме */
-body.glitch-mode h1, 
-body.glitch-mode h2, 
-body.glitch-mode p {
-    text-shadow: 2px 0 #ff0055, -2px 0 #00ffff;
-    animation: textFlicker 0.1s infinite alternate;
+/* Космическое свечение сквозь трещины */
+.space-fracture-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.15) 40%, rgba(7, 11, 20, 0.75) 100%);
+    backdrop-filter: blur(1.5px);
+    z-index: 1;
+    animation: cosmicPulse 4s ease-in-out infinite alternate;
 }
 
-@keyframes textFlicker {
-    0% { opacity: 0.9; }
-    100% { opacity: 1; transform: skewX(-1deg); }
+@keyframes cosmicPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+/* SVG Трещины по центру экрана */
+.fracture-crack {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vmin;
+    height: 100vmin;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    z-index: 2;
+    stroke: #38bdf8;
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 25px rgba(168, 85, 247, 0.6));
+}
+
+.space-fracture-overlay.active .fracture-crack {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Летящие осколки стекла */
+.glass-shard {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(56,189,248,0.2));
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    z-index: 3;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.9s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.space-fracture-overlay.active .glass-shard {
+    opacity: 0.9;
+    transform: scale(1) translate(var(--tx), var(--ty)) rotate(var(--trot));
 }

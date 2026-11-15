@@ -42,17 +42,40 @@ function setTheme(mode) {
     themeMenuBtn.classList.remove('open');
 }
 
+// Раскрытие и скрытие подробной информации (Show details / Hide details)
+function toggleDetails(btn) {
+    const content = btn.nextElementSibling;
+    const textSpan = btn.querySelector('span');
+    const isExpanded = content.classList.toggle('expanded');
+    
+    btn.classList.toggle('open', isExpanded);
+    if (isExpanded) {
+        textSpan.textContent = textSpan.textContent.replace('Show', 'Hide');
+    } else {
+        textSpan.textContent = textSpan.textContent.replace('Hide', 'Show');
+    }
+}
+
 // Логика плавного слайдера навигации и фильтрации разделов
 const navTabs = document.querySelectorAll('.nav-tab');
 const navGlider = document.getElementById('navGlider');
 const sections = document.querySelectorAll('.tab-section');
+const heroSection = document.getElementById('hero');
 
 function moveGlider(activeTab) {
     navGlider.style.width = `${activeTab.offsetWidth}px`;
-    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 5}px)`;
+    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 4}px)`;
 }
 
 function filterSections(target) {
+    // Если выбрана конкретная вкладка, уменьшаем большой отступ приветствия, 
+    // чтобы контент сразу был виден пользователю
+    if (target === 'all') {
+        heroSection.style.marginBottom = '';
+    } else {
+        heroSection.style.marginBottom = '36px';
+    }
+
     sections.forEach(sec => {
         if (target === 'all' || sec.getAttribute('data-section') === target) {
             sec.classList.remove('hidden');

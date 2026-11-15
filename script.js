@@ -116,6 +116,7 @@ const translations = {
         skills_lang_title: "Tillar", skills_lang_sub: "Rus va ingliz tillari",
         skills_lang_text: "Rus tili (ona tili), Ingliz tili (B2 - IELTS sertifikati).",
         footer_email: "Elektron pochta"
+        special_btn: "Maxsus rejim"
     },
     es: {
         nav_all: "Todo", nav_exp: "Experiencia", nav_edu: "Educación", nav_skills: "Habilidades",
@@ -147,6 +148,7 @@ const translations = {
         skills_lang_title: "Idiomas", skills_lang_sub: "Ruso e Inglés",
         skills_lang_text: "Ruso (Nativo), Inglés (B2 - certificado IELTS).",
         footer_email: "Correo electrónico"
+        special_btn:"Modo Especial"
     },
     fr: {
         nav_all: "Tout", nav_exp: "Expérience", nav_edu: "Éducation", nav_skills: "Compétences",
@@ -178,6 +180,8 @@ const translations = {
         skills_lang_title: "Langues", skills_lang_sub: "Russe et Anglais",
         skills_lang_text: "Russe (Natif), Anglais (B2 - certifié IELTS).",
         footer_email: "E-mail"
+        special_btn:"Mode Spécial"
+        
     },
     de: {
         nav_all: "Alle", nav_exp: "Erfahrung", nav_edu: "Bildung", nav_skills: "Fähigkeiten",
@@ -209,6 +213,7 @@ const translations = {
         skills_lang_title: "Sprachen", skills_lang_sub: "Russisch & Englisch",
         skills_lang_text: "Russisch (Muttersprache), Englisch (B2 - IELTS zertifiziert).",
         footer_email: "E-Mail"
+        special_btn:"Spezialmodus"
     },
     it: {
         nav_all: "Tutti", nav_exp: "Esperienza", nav_edu: "Formazione", nav_skills: "Competenze",
@@ -240,6 +245,7 @@ const translations = {
         skills_lang_title: "Lingue", skills_lang_sub: "Russo e Inglese",
         skills_lang_text: "Russo (Madrelingua), Inglese (B2 - certificato IELTS).",
         footer_email: "Email"
+       special_btn:"Modalità Speciale"
     },
     zh: {
         nav_all: "全部", nav_exp: "经历", nav_edu: "教育", nav_skills: "技能",
@@ -271,6 +277,7 @@ const translations = {
         skills_lang_title: "语言", skills_lang_sub: "俄语与英语",
         skills_lang_text: "俄语（母语）、英语（B2 - IELTS认证）。",
         footer_email: "电子邮箱"
+        special_btn:"特殊模式"
     },
     ar: {
         nav_all: "الكل", nav_exp: "الخبرة", nav_edu: "التعليم", nav_skills: "المهارات",
@@ -302,6 +309,7 @@ const translations = {
         skills_lang_title: "اللغات", skills_lang_sub: "الروسية والإنجليزية",
         skills_lang_text: "الروسية (اللغة الأم)، الإنجليزية (B2 - معتمدة من IELTS).",
         footer_email: "البريد الإلكتروني"
+        special_btn:"وضع خاص"
     },
     tr: {
         nav_all: "Tümü", nav_exp: "Deneyim", nav_edu: "Eğitim", nav_skills: "Yetenekler",
@@ -333,6 +341,7 @@ const translations = {
         skills_lang_title: "Diller", skills_lang_sub: "Rusça ve İngilizce",
         skills_lang_text: "Rusça (Anadil), İngilizce (B2 - IELTS sertifikalı).",
         footer_email: "E-posta"
+        special_btn:"Özel Mod"
     }
 };
 

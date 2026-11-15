@@ -69,7 +69,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     line-height: 1.6;
-    padding: 24px 16px 60px;
+    padding: 24px 16px 80px;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -91,50 +91,50 @@ body {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(85px);
+    filter: blur(95px);
     transition: background 0.5s ease, transform 0.5s ease;
 }
 
 .orb-1 {
-    width: 420px;
-    height: 420px;
+    width: 450px;
+    height: 450px;
     background: var(--orb-1);
-    top: -80px;
+    top: -100px;
     left: -100px;
-    animation: floatOrb1 12s ease-in-out infinite alternate;
+    animation: floatOrb1 14s ease-in-out infinite alternate;
 }
 
 .orb-2 {
-    width: 480px;
-    height: 480px;
+    width: 500px;
+    height: 500px;
     background: var(--orb-2);
-    top: 35%;
-    right: -120px;
-    animation: floatOrb2 15s ease-in-out infinite alternate;
+    top: 30%;
+    right: -140px;
+    animation: floatOrb2 16s ease-in-out infinite alternate;
 }
 
 .orb-3 {
-    width: 380px;
-    height: 380px;
+    width: 400px;
+    height: 400px;
     background: var(--orb-3);
-    bottom: -60px;
-    left: 25%;
-    animation: floatOrb3 10s ease-in-out infinite alternate;
+    bottom: -80px;
+    left: 20%;
+    animation: floatOrb3 12s ease-in-out infinite alternate;
 }
 
 @keyframes floatOrb1 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(40px, 60px) scale(1.1); }
+    100% { transform: translate(50px, 70px) scale(1.1); }
 }
 
 @keyframes floatOrb2 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-50px, -40px) scale(1.15); }
+    100% { transform: translate(-60px, -50px) scale(1.15); }
 }
 
 @keyframes floatOrb3 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, -50px) scale(1.05); }
+    100% { transform: translate(40px, -60px) scale(1.05); }
 }
 
 .portfolio-container {
@@ -149,7 +149,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 4px 24px;
+    padding: 6px 4px 32px;
 }
 
 .current-date {
@@ -244,7 +244,7 @@ body {
 .nav-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 36px;
+    margin-bottom: 48px;
 }
 
 .segmented-nav {
@@ -288,7 +288,7 @@ body {
     background: transparent;
     border: none;
     color: var(--text-muted);
-    padding: 8px 20px;
+    padding: 9px 22px;
     border-radius: 999px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -306,14 +306,14 @@ body {
     font-weight: 600;
 }
 
-/* Hero Section (Больше воздуха) */
+/* Hero Section (Много воздуха сверху) */
 .hero-section {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
     background-color: var(--card-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
-    padding: 42px 40px;
+    padding: 50px 44px;
     border-radius: 20px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -331,29 +331,33 @@ body {
 }
 
 .hero-section h1 {
-    font-size: 2.35rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
     color: var(--accent-blue);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .hero-bio {
     color: var(--text-muted);
-    font-size: 1rem;
+    font-size: 1.02rem;
     max-width: 740px;
 }
 
-/* Секции (Больше пространства между блоками) */
+/* Секции с огромным вертикальным пространством для скролла в режиме All */
 .tab-section {
-    margin-bottom: 40px;
-    animation: fadeInTab 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-bottom: 80px;
+    min-height: 45vh; /* Дает много воздуха для прокрутки */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeInTab 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .tab-section.hidden {
@@ -363,7 +367,7 @@ body {
 @keyframes fadeInTab {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(14px);
     }
     to {
         opacity: 1;
@@ -372,9 +376,9 @@ body {
 }
 
 .tab-section h2 {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     color: var(--text-primary);
     letter-spacing: -0.01em;
 }
@@ -384,8 +388,8 @@ body {
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
+    padding: 32px;
+    margin-bottom: 24px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
@@ -406,7 +410,7 @@ body {
 }
 
 .card-block h3 {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 600;
 }
 
@@ -445,7 +449,7 @@ body {
 .dual-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
 .dual-grid .card-block {
@@ -456,8 +460,8 @@ body {
 /* Footer */
 .portfolio-footer {
     border-top: 1px solid var(--card-border);
-    padding-top: 26px;
-    margin-top: 50px;
+    padding-top: 32px;
+    margin-top: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -484,13 +488,16 @@ body {
 
 @media (max-width: 480px) {
     .nav-tab {
-        padding: 7px 14px;
+        padding: 8px 16px;
         font-size: 0.85rem;
     }
     .hero-section {
-        padding: 30px 24px;
+        padding: 34px 26px;
     }
     .hero-section h1 {
-        font-size: 1.9rem;
+        font-size: 2rem;
+    }
+    .tab-section {
+        min-height: auto;
     }
 }

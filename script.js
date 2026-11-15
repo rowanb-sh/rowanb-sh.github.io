@@ -50,11 +50,6 @@ const translations = {
         skills_analyt_text: "Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.",
         skills_lang_title: "Languages", skills_lang_sub: "Russian & English",
         skills_lang_text: "Russian (Native), English (B2 - IELTS certified).",
-        nav_projects: "Projects",
-        projects_heading: "Projects",
-        proj1_title: "Safe Haven Platform",
-        proj1_sub: "Educational Hub & Social Enterprise",
-        proj1_desc: "Developed a prototype website, white paper, and financial annex for an Income Share Agreement based educational hub."
         footer_email: "Email"
         
 
@@ -88,11 +83,6 @@ const translations = {
         skills_analyt_text: "Количественный анализ данных, основы финансов, соблюдение SOP, онбординг персонала, отчетность по сменам, веб-трекинг ELD.",
         skills_lang_title: "Языки", skills_lang_sub: "Русский и английский",
         skills_lang_text: "Русский (родной), английский (B2 — сертификат IELTS).",
-        nav_projects: "Проекты",
-        projects_heading: "Проекты",
-        proj1_title: "Платформа Safe Haven",
-        proj1_sub: "Образовательный хаб и социальное предприятие",
-        proj1_desc: "Разработал прототип сайта, white paper и финансовое приложение для образовательного хаба на базе соглашений о доле от доходов."
         footer_email: "Почта"
         
 

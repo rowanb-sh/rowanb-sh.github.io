@@ -483,9 +483,8 @@ window.addEventListener('resize', () => {
     if (activeTab) moveGlider(activeTab);
 });
 
-// === SPECIAL MODE (Космический разлом и Глюк-режим) ===
+// === SPECIAL MODE (Настоящий разлом в бездну и неоновые гличи) ===
 let isSpecialActive = false;
-const originalTextsMap = new Map();
 
 function triggerSpecialMode() {
     isSpecialActive = !isSpecialActive;
@@ -497,32 +496,33 @@ function triggerSpecialMode() {
         overlay.id = 'spaceFractureOverlay';
         overlay.className = 'space-fracture-overlay';
         
-        // SVG-паутина трещин в стиле аниме-разлома
+        // Добавляем туманность и рваные края бездны
         overlay.innerHTML = `
-            <svg class="fracture-crack" viewBox="0 0 500 500" fill="none" stroke-width="2">
-                <path d="M250 250 L120 80 M250 250 L380 90 M250 250 L420 220 M250 250 L390 380 M250 250 L230 440 M250 250 L90 370 M250 250 L60 200" stroke-linecap="round"/>
-                <path d="M120 80 L70 50 M120 80 L180 40 M380 90 L440 60 M380 90 L340 30 M420 220 L480 190 M420 220 L470 280 M390 380 L430 450 M390 380 L310 460 M230 440 L180 480 M90 370 L30 410 M90 370 L40 300 M60 200 L20 150" stroke-linecap="round" opacity="0.7"/>
-                <polygon points="250,250 180,150 230,120" fill="rgba(168,85,247,0.2)" stroke="none"/>
-                <polygon points="250,250 340,180 380,240" fill="rgba(56,189,248,0.2)" stroke="none"/>
-                <polygon points="250,250 280,350 200,380" fill="rgba(236,72,153,0.2)" stroke="none"/>
+            <div class="abyss-nebula"></div>
+            <svg class="fracture-crack" viewBox="0 0 500 500" fill="none" stroke-width="3">
+                <path d="M250 250 L100 60 M250 250 L400 70 M250 250 L440 200 M250 250 L370 410 M250 250 L210 460 M250 250 L80 390 M250 250 L50 180" stroke-linecap="round"/>
+                <path d="M100 60 L40 30 M100 60 L160 20 M400 70 L470 40 M400 70 L350 10 M440 200 L500 160 M440 200 L480 270 M370 410 L420 480 M370 410 L280 470 M210 460 L150 490 M80 390 L20 440 M80 390 L30 300 M50 180 L10 120" stroke-linecap="round" opacity="0.8"/>
+                <polygon points="250,250 160,110 210,90" fill="rgba(147,51,234,0.3)" stroke="none"/>
+                <polygon points="250,250 350,130 390,210" fill="rgba(59,130,246,0.3)" stroke="none"/>
+                <polygon points="250,250 300,380 200,410" fill="rgba(236,72,153,0.3)" stroke="none"/>
             </svg>
         `;
         
-        // Генерация летящих осколков стекла
-        for (let i = 0; i < 12; i++) {
+        // Генерация летящих осколков
+        for (let i = 0; i < 14; i++) {
             const shard = document.createElement('div');
             shard.className = 'glass-shard';
-            const size = 15 + Math.random() * 30;
+            const size = 18 + Math.random() * 35;
             shard.style.width = `${size}px`;
             shard.style.height = `${size}px`;
             shard.style.top = '50%';
             shard.style.left = '50%';
             
-            const angle = (i / 12) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-            const distance = 150 + Math.random() * 250;
+            const angle = (i / 14) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+            const distance = 180 + Math.random() * 280;
             const tx = Math.cos(angle) * distance;
             const ty = Math.sin(angle) * distance;
-            const trot = (Math.random() - 0.5) * 360;
+            const trot = (Math.random() - 0.5) * 400;
             
             shard.style.setProperty('--tx', `${tx}px`);
             shard.style.setProperty('--ty', `${ty}px`);
@@ -538,14 +538,13 @@ function triggerSpecialMode() {
         overlay.classList.add('active');
         setTimeout(() => {
             body.classList.add('glitch-mode');
-            glitchTextElements(true);
         }, 400);
     } else {
         overlay.classList.remove('active');
         body.classList.remove('glitch-mode');
-        glitchTextElements(false);
     }
 }
+
 
 function glitchTextElements(enable) {
     const elements = document.querySelectorAll('h1, h2, .hero-subtitle, .block-sub');

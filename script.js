@@ -483,34 +483,30 @@ window.addEventListener('resize', () => {
     if (activeTab) moveGlider(activeTab);
 });
 
-// === АВТОМАТИЧЕСКИЙ ХАОС НА ПРОСТЫХ ЧИСЛАХ ===
+//Хаос с интервалом в простых числах
 const primeIntervals = [3, 5, 7, 11, 13, 17, 19];
 let primeIndex = 0;
 
 function scheduleNextGlitch() {
     const currentSeconds = primeIntervals[primeIndex];
     
-    // Переходим к следующему простому числу, после 37 сбрасываем на 0 (снова 7 секунд)
+   
     primeIndex = (primeIndex + 1) % primeIntervals.length;
 
     setTimeout(() => {
         triggerPartialChaos();
-        scheduleNextGlitch(); // Планируем следующий сбой
+        scheduleNextGlitch(); 
     }, currentSeconds * 1000);
 }
 
 function triggerPartialChaos() {
-    // Теперь в список целей входят как текст, так и целые карточки-контейнеры
     const targets = document.querySelectorAll('.card-block, .card-block h3, .hero-subtitle, .block-date, .current-date');
     if (targets.length === 0) return;
 
-    // Выбираем случайный элемент (карточку или текст)
     const randomTarget = targets[Math.floor(Math.random() * targets.length)];
     
-    // Включаем глитч на 2.5 секунды
     randomTarget.classList.add('element-glitch');
     
-    // Если это карточка, иногда можем зацепить и фоновый контейнер сфер для глубины
     const bgOrbs = document.querySelector('.bg-orbs');
     if (Math.random() > 0.5 && bgOrbs) {
         bgOrbs.classList.add('element-glitch');

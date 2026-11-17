@@ -1,605 +1,84 @@
-/* Светлая тема (по умолчанию) */
+/* === 1. ЦВЕТОВАЯ ГАММА (Зеленый неон + защита от болотной каши в темной теме) === */
 :root {
-    --bg-main: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.82);
-    --card-border: rgba(226, 232, 240, 0.85);
+    --accent-green: #10b981;
+    --accent-glow: rgba(16, 185, 129, 0.25);
+}
+
+/* Светлая тема */
+body:not(.theme-dark) {
+    --bg-gradient: radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+                   radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.08) 0%, transparent 40%), #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.85);
     --text-primary: #0f172a;
-    --text-muted: #475569;
-    --date-color: #1e293b;
-    --accent-blue: #2563eb;
-    --accent-glow: rgba(37, 99, 235, 0.12);
-    --tag-bg: rgba(37, 99, 235, 0.08);
-    --pill-bg: rgba(255, 255, 255, 0.75);
-    --pill-active-bg: #ffffff;
-    --pill-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
-    --pill-border: rgba(203, 213, 225, 0.8);
-    --doodle-color: rgba(37, 99, 235, 0.07); /* Едва заметный синеватый контур для светлой темы */
-    
-    --orb-1: rgba(236, 72, 153, 0.22);
-    --orb-2: rgba(59, 130, 246, 0.22);
-    --orb-3: rgba(168, 85, 247, 0.18);
+    --text-secondary: #334155; /* Улучшили контраст детального текста */
+    --accent-blue: #059669; /* Переводили синий на глубокий изумрудный/зеленый */
 }
 
-/* Тёмная тема: Dark */
+/* Темная тема (строгий киберпанк-неон без болотной каши) === */
 body.theme-dark {
-    --bg-main: #070b14;
-    --card-bg: rgba(17, 24, 39, 0.78);
-    --card-border: rgba(30, 41, 59, 0.9);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --date-color: #cbd5e1;
-    --accent-blue: #3b82f6;
-    --accent-glow: rgba(59, 130, 246, 0.25);
-    --tag-bg: rgba(59, 130, 246, 0.15);
-    --pill-bg: rgba(17, 24, 39, 0.75);
-    --pill-active-bg: #1e293b;
-    --pill-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-    --pill-border: rgba(51, 65, 85, 0.7);
-    --doodle-color: rgba(255, 255, 255, 0.05); /* Тончайший белый контур для темной темы в стиле WhatsApp */
-
-    --orb-1: rgba(59, 130, 246, 0.28);
-    --orb-2: rgba(139, 92, 246, 0.25);
-    --orb-3: rgba(6, 182, 212, 0.2);
+    --bg-gradient: radial-gradient(circle at 30% 20%, rgba(6, 78, 59, 0.4) 0%, transparent 50%),
+                   radial-gradient(circle at 70% 80%, rgba(4, 47, 46, 0.5) 0%, transparent 50%), #030712;
+    --card-bg: rgba(17, 24, 39, 0.75);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af; /* Четкий приглушенный белый для деталей в темноте */
+    --accent-blue: #34d399; /* Чистый неоново-зеленый акцент */
+    --accent-glow: rgba(52, 211, 153, 0.35);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-}
-
-button:focus {
-    outline: none;
-}
-
-body {
-    font-family: 'Lora', Georgia, serif;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.75;
-    padding: 20px 16px 70px;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
-}
-
-/* 3D Блюр-сферы на фоне */
-.bg-orbs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    transition: background 0.6s ease, transform 0.6s ease;
-}
-
-.orb-1 { width: 450px; height: 450px; background: var(--orb-1); top: -100px; left: -100px; animation: floatOrb1 14s ease-in-out infinite alternate; }
-.orb-2 { width: 500px; height: 500px; background: var(--orb-2); top: 30%; right: -140px; animation: floatOrb2 16s ease-in-out infinite alternate; }
-.orb-3 { width: 400px; height: 400px; background: var(--orb-3); bottom: -80px; left: 20%; animation: floatOrb3 12s ease-in-out infinite alternate; }
-
-@keyframes floatOrb1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 70px) scale(1.1); } }
-@keyframes floatOrb2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-60px, -50px) scale(1.15); } }
-@keyframes floatOrb3 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, -60px) scale(1.05); } }
-
-.portfolio-container {
-    max-width: 860px;
-    margin: 0 auto;
-}
-
-/* Верхняя строка */
-.top-utility-row {
-    position: relative;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 2px 24px;
-}
-
-.current-date {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--date-color);
-    letter-spacing: -0.01em;
-}
-
-.top-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.lang-dropdown-wrapper,
-.theme-dropdown-wrapper {
-    position: relative;
-}
-
-.lang-btn,
-.theme-btn {
-    background-color: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--card-border);
-    color: var(--text-primary);
-    padding: 5px 10px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 0.78rem;
-    font-family: 'Lora', Georgia, serif;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.lang-btn:hover,
-.theme-btn:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-1px);
-}
-
-.chevron-icon {
-    width: 12px;
-    height: 12px;
-    stroke: var(--text-muted);
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.lang-btn.open .chevron-icon,
-.theme-btn.open .chevron-icon {
-    transform: rotate(180deg);
-}
-
-/* Выпадающие меню */
-.dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 38px;
-    background-color: var(--card-bg);
-    backdrop-filter: blur(18px);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
-    width: 175px;
-    max-height: 260px;
-    overflow-y: auto;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px) scale(0.96);
-    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 6px;
-    z-index: 2000;
-}
-
-.dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.dropdown-option {
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    text-align: left;
-    padding: 8px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-family: 'Lora', Georgia, serif;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-}
-
-.dropdown-option:hover {
-    background-color: var(--tag-bg);
-    color: var(--accent-blue);
-    padding-left: 13px;
-}
-
-/* Навигация */
-.nav-wrapper {
+/* === 2. НАВИГАЦИЯ (Desktop: сверху по центру, Mobile: плавающая сбоку) === */
+.portfolio-nav {
     display: flex;
     justify-content: center;
-    margin-bottom: 56px;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-.segmented-nav {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    background: var(--pill-bg);
-    backdrop-filter: blur(12px);
-    padding: 4px;
-    border-radius: 999px;
-    border: 1px solid var(--pill-border);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+@media (max-width: 768px) {
+    .portfolio-nav {
+        position: fixed;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        z-index: 1000;
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        padding: 10px 6px;
+        border-radius: 999px;
+        border: 1px solid var(--accent-blue);
+        box-shadow: 0 4px 20px var(--accent-glow);
+    }
 }
 
-.nav-glider {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    height: calc(100% - 8px);
-    background-color: var(--pill-active-bg);
-    border-radius: 999px;
-    box-shadow: var(--pill-shadow);
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 1;
-}
-
-.nav-tab {
-    position: relative;
-    z-index: 2;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-family: 'Lora', Georgia, serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-}
-
-.nav-tab:hover {
-    color: var(--text-primary);
-}
-
-.nav-tab.active {
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-/* Приветствие */
-.hero-clean {
-    padding: 20px 8px 0;
-    margin-bottom: 24vh;
-    transition: margin-bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.hero-clean h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 14px;
-    letter-spacing: -0.02em;
-}
-
-.hero-subtitle {
-    color: var(--accent-blue);
-    font-size: 1.15rem;
-    font-weight: 600;
+/* === 3. КОМПАКТНЫЕ И СВЕДЕННЫЕ КАРТОЧКИ === */
+.cards-grid, .unified-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
     margin-bottom: 24px;
 }
 
-.hero-bio {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    max-width: 680px;
-}
-
-.hero-bio p {
-    margin-bottom: 12px;
-}
-
-.hero-bio p:last-child {
-    margin-bottom: 0;
-}
-
-/* Стили для фоновых узоров (Doodles) */
-.tab-section {
-    position: relative;
-    margin-bottom: 80px;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.section-doodles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.doodle {
-    position: absolute;
-    stroke: var(--doodle-color);
-    fill: none;
-    opacity: 0.65;
-    transition: stroke 0.4s ease;
-}
-
-/* Расположение узоров по секциям */
-.work-doodles .d-1 { width: 70px; top: 10%; left: -20px; transform: rotate(-15deg); }
-.work-doodles .d-2 { width: 90px; bottom: 15%; right: -30px; transform: rotate(20deg); }
-.work-doodles .d-3 { width: 60px; top: 50%; right: 10px; transform: rotate(10deg); }
-
-.edu-doodles .d-1 { width: 80px; top: 5%; right: -25px; transform: rotate(15deg); }
-.edu-doodles .d-2 { width: 70px; bottom: 20%; left: -25px; transform: rotate(-10deg); }
-.edu-doodles .d-3 { width: 65px; top: 60%; right: 15px; transform: rotate(-25deg); }
-
-.skills-doodles .d-1 { width: 75px; top: 15%; left: -20px; transform: rotate(20deg); }
-.skills-doodles .d-2 { width: 85px; bottom: 10%; right: -25px; transform: rotate(-15deg); }
-.skills-doodles .d-3 { width: 60px; top: 45%; right: 5px; transform: rotate(5deg); }
-
-.tab-section.hidden {
-    display: none;
-}
-
-@keyframes fadeInTab {
-    from { opacity: 0; transform: translateY(12px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.tab-section:not(.hidden) {
-    animation: fadeInTab 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.tab-section h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--text-primary);
-}
-
 .card-block {
-    background-color: var(--card-bg);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 26px 28px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.card-block:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px var(--accent-glow);
-}
-
-.block-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 6px;
-}
-
-.card-block h3 {
-    font-size: 1.18rem;
-    font-weight: 600;
-}
-
-.block-date {
-    font-size: 0.82rem;
-    color: var(--accent-blue);
-    background-color: var(--tag-bg);
-    padding: 3px 10px;
-    border-radius: 6px;
-    font-weight: 600;
-}
-
-.block-sub {
-    font-size: 0.96rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    margin-bottom: 14px;
-}
-
-.details-toggle {
-    margin-top: 12px;
-    background: transparent;
-    border: none;
-    color: var(--accent-blue);
-    font-family: 'Lora', Georgia, serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 0;
-    transition: opacity 0.2s ease;
-}
-
-.details-toggle:hover { opacity: 0.8; }
-
-.details-toggle svg {
-    width: 14px;
-    height: 14px;
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.details-toggle.open svg {
-    transform: rotate(180deg);
-}
-
-/* Плавное раскрытие */
-.collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, margin-top 0.3s ease;
-    margin-top: 0;
-    border-top: 0 solid var(--card-border);
-}
-
-.collapsible-content.expanded {
-    max-height: 500px;
-    opacity: 1;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid var(--card-border);
-}
-
-.task-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    color: var(--text-muted);
-    font-size: 0.96rem;
-}
-
-.task-list li {
-    margin-bottom: 10px;
-}
-
-.task-list li:last-child { margin-bottom: 0; }
-
-.regular-text {
-    font-size: 0.96rem;
-    color: var(--text-muted);
-}
-
-.dual-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-}
-
-.dual-grid .card-block { height: 100%; }
-
-/* Footer */
-.portfolio-footer {
-    border-top: 1px solid var(--card-border);
-    padding-top: 26px;
-    margin-top: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.portfolio-footer-links {
-    display: flex;
-    gap: 18px;
-}
-
-.portfolio-footer-links a {
-    color: var(--accent-blue);
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.2s ease;
-}
-
-.portfolio-footer-links a:hover {
-    opacity: 0.75;
-    text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-    .nav-tab { padding: 7px 14px; font-size: 0.86rem; }
-    .hero-clean h1 { font-size: 2.2rem; }
-    .hero-clean { margin-bottom: 16vh; }
-}
-
-/* Контейнер кнопки по центру внизу */
-.special-btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 100;
-}
-
-.special-mode-btn {
     background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--accent-blue);
-    color: var(--text-primary);
-    padding: 10px 22px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    font-family: 'Lora', Georgia, serif;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 20px var(--accent-glow);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 14px;
+    padding: 18px;
+    transition: all 0.3s ease;
 }
 
-.special-mode-btn:hover {
-    background: var(--accent-blue);
-    color: #ffffff;
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 6px 25px var(--accent-blue);
+.card-block p, .card-block li {
+    color: var(--text-secondary);
+    font-size: 0.93rem;
+    line-height: 1.5;
 }
 
-
-
-body.glitch-mode {
-    animation: screenGlitch 0.25s infinite;
-    filter: hue-rotate(290deg) contrast(140%) saturate(130%);
-}
-
-body.glitch-mode::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 128, 0.08), rgba(0, 240, 255, 0.04), rgba(147, 51, 234, 0.08));
-    z-index: 9999;
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
-}
-
-@keyframes screenGlitch {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-4px, 3px); }
-    40% { transform: translate(3px, -3px); }
-    60% { transform: translate(-3px, -2px); }
-    80% { transform: translate(4px, 3px); }
-    100% { transform: translate(0, 0); }
-}
-
-body.glitch-mode h1, 
-body.glitch-mode h2, 
-body.glitch-mode p,
-body.glitch-mode .card-block {
-    text-shadow: 2px 0 #ff007f, -2px 0 #00f0ff;
-    animation: textFlicker 0.12s infinite alternate;
-}
-
-@keyframes textFlicker {
-    0% { opacity: 0.92; transform: skewX(-1deg) translateY(0); }
-    100% { opacity: 1; transform: skewX(1deg) translateY(-1px); }
-}
-
-/* Выборочный глитч для случайных элементов */
+/* === 4. ГЛИТЧИ (Смена шрифта на засечки + мульти-объекты) === */
 .element-glitch {
     position: relative;
-    text-shadow: 2px 0 #ff007f, -2px 0 #00f0ff !important;
+    font-family: 'Times New Roman', Times, 'Lora', serif !important; /* Шрифт с мощными засечками */
+    letter-spacing: 0.5px;
+    text-shadow: 2px 0 #10b981, -2px 0 #34d399 !important;
     animation: partialGlitchAnim 0.15s infinite alternate !important;
 }
 
@@ -609,17 +88,23 @@ body.glitch-mode .card-block {
     100% { transform: translate(2px, -1px) skewX(2deg); opacity: 0.9; }
 }
 
-/* Глитч для карточек-контейнеров */
-.card-block.element-glitch {
-    border-color: #ff007f !important;
-    box-shadow: 0 0 30px rgba(255, 0, 127, 0.35), 0 0 15px rgba(0, 240, 255, 0.3) !important;
-    transform: translate(3px, -2px) skewX(-1.5deg) !important;
-    background-color: var(--card-bg) !important;
+/* === 5. ПЛАВАЮЩИЙ ПЕРЕКЛЮЧАТЕЛЬ ХАОСА ВНИЗУ === */
+.glitch-toggle-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-blue);
+    padding: 8px 16px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px var(--accent-glow);
+    font-size: 0.85rem;
+    color: var(--text-primary);
 }
-
-.bg-orbs.element-glitch {
-    filter: hue-rotate(60deg) blur(20px);
-    transform: scale(1.03);
-    transition: all 0.2s ease;
-}
-

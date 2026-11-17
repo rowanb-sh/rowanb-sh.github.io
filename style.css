@@ -5,6 +5,7 @@
     --card-border: rgba(226, 232, 240, 0.85);
     --text-primary: #0f172a;
     --text-muted: #475569;
+    --date-color: #1e293b;
     --accent-blue: #2563eb;
     --accent-glow: rgba(37, 99, 235, 0.12);
     --tag-bg: rgba(37, 99, 235, 0.08);
@@ -12,6 +13,7 @@
     --pill-active-bg: #ffffff;
     --pill-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
     --pill-border: rgba(203, 213, 225, 0.8);
+    --doodle-color: rgba(37, 99, 235, 0.07); /* Едва заметный синеватый контур для светлой темы */
     
     --orb-1: rgba(236, 72, 153, 0.22);
     --orb-2: rgba(59, 130, 246, 0.22);
@@ -20,31 +22,12 @@
 
 /* Тёмная тема: Dark */
 body.theme-dark {
-    --bg-main: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.78);
-    --card-border: rgba(51, 65, 85, 0.85);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #60a5fa;
-    --accent-glow: rgba(96, 165, 250, 0.18);
-    --tag-bg: rgba(96, 165, 250, 0.12);
-    --pill-bg: rgba(30, 41, 59, 0.75);
-    --pill-active-bg: #334155;
-    --pill-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    --pill-border: rgba(71, 85, 105, 0.7);
-
-    --orb-1: rgba(99, 102, 241, 0.25);
-    --orb-2: rgba(14, 165, 233, 0.22);
-    --orb-3: rgba(236, 72, 153, 0.18);
-}
-
-/* Тёмная тема: Midnight */
-body.theme-midnight {
     --bg-main: #070b14;
     --card-bg: rgba(17, 24, 39, 0.78);
     --card-border: rgba(30, 41, 59, 0.9);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
+    --date-color: #cbd5e1;
     --accent-blue: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.25);
     --tag-bg: rgba(59, 130, 246, 0.15);
@@ -52,6 +35,7 @@ body.theme-midnight {
     --pill-active-bg: #1e293b;
     --pill-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
     --pill-border: rgba(51, 65, 85, 0.7);
+    --doodle-color: rgba(255, 255, 255, 0.05); /* Тончайший белый контур для темной темы в стиле WhatsApp */
 
     --orb-1: rgba(59, 130, 246, 0.28);
     --orb-2: rgba(139, 92, 246, 0.25);
@@ -62,7 +46,6 @@ body.theme-midnight {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* Убираем стандартный синий/серый квадрат при тапе на телефоне */
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -79,7 +62,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.3s ease;
+    transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
 }
 
 /* 3D Блюр-сферы на фоне */
@@ -97,51 +80,17 @@ body {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(95px);
-    transition: background 0.5s ease;
+    filter: blur(100px);
+    transition: background 0.6s ease, transform 0.6s ease;
 }
 
-.orb-1 {
-    width: 450px;
-    height: 450px;
-    background: var(--orb-1);
-    top: -100px;
-    left: -100px;
-    animation: floatOrb1 14s ease-in-out infinite alternate;
-}
+.orb-1 { width: 450px; height: 450px; background: var(--orb-1); top: -100px; left: -100px; animation: floatOrb1 14s ease-in-out infinite alternate; }
+.orb-2 { width: 500px; height: 500px; background: var(--orb-2); top: 30%; right: -140px; animation: floatOrb2 16s ease-in-out infinite alternate; }
+.orb-3 { width: 400px; height: 400px; background: var(--orb-3); bottom: -80px; left: 20%; animation: floatOrb3 12s ease-in-out infinite alternate; }
 
-.orb-2 {
-    width: 500px;
-    height: 500px;
-    background: var(--orb-2);
-    top: 30%;
-    right: -140px;
-    animation: floatOrb2 16s ease-in-out infinite alternate;
-}
-
-.orb-3 {
-    width: 400px;
-    height: 400px;
-    background: var(--orb-3);
-    bottom: -80px;
-    left: 20%;
-    animation: floatOrb3 12s ease-in-out infinite alternate;
-}
-
-@keyframes floatOrb1 {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(50px, 70px) scale(1.1); }
-}
-
-@keyframes floatOrb2 {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-60px, -50px) scale(1.15); }
-}
-
-@keyframes floatOrb3 {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(40px, -60px) scale(1.05); }
-}
+@keyframes floatOrb1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 70px) scale(1.1); } }
+@keyframes floatOrb2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-60px, -50px) scale(1.15); } }
+@keyframes floatOrb3 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, -60px) scale(1.05); } }
 
 .portfolio-container {
     max-width: 860px;
@@ -159,96 +108,112 @@ body {
 }
 
 .current-date {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--date-color);
+    letter-spacing: -0.01em;
 }
 
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-dropdown-wrapper,
 .theme-dropdown-wrapper {
     position: relative;
 }
 
+.lang-btn,
 .theme-btn {
     background-color: var(--card-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 7px 14px;
+    padding: 5px 10px;
     border-radius: 999px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    gap: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.lang-btn:hover,
 .theme-btn:hover {
     border-color: var(--accent-blue);
+    transform: translateY(-1px);
 }
 
 .chevron-icon {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     stroke: var(--text-muted);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.lang-btn.open .chevron-icon,
 .theme-btn.open .chevron-icon {
     transform: rotate(180deg);
 }
 
-.theme-menu {
+/* Выпадающие меню */
+.dropdown-menu {
     position: absolute;
     right: 0;
-    top: 42px;
+    top: 38px;
     background-color: var(--card-bg);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
     border: 1px solid var(--card-border);
     border-radius: 14px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-    width: 170px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    width: 175px;
+    max-height: 260px;
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    transform: translateY(-10px) scale(0.96);
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
     padding: 6px;
     z-index: 2000;
 }
 
-.theme-menu.show {
+.dropdown-menu.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
-.theme-option {
+.dropdown-option {
     background: transparent;
     border: none;
     color: var(--text-primary);
     text-align: left;
-    padding: 9px 12px;
+    padding: 8px 10px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-family: 'Lora', Georgia, serif;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    gap: 8px;
+    transition: all 0.2s ease;
 }
 
-.theme-option:hover {
+.dropdown-option:hover {
     background-color: var(--tag-bg);
     color: var(--accent-blue);
+    padding-left: 13px;
 }
 
-/* Навигация-пилюля (исправлена: без квадрата и лишней заливки) */
+/* Навигация */
 .nav-wrapper {
     display: flex;
     justify-content: center;
@@ -275,7 +240,7 @@ body {
     background-color: var(--pill-active-bg);
     border-radius: 999px;
     box-shadow: var(--pill-shadow);
-    transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), width 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
 }
 
@@ -291,7 +256,7 @@ body {
     font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     cursor: pointer;
-    transition: color 0.25s ease;
+    transition: color 0.3s ease;
     white-space: nowrap;
 }
 
@@ -304,10 +269,11 @@ body {
     font-weight: 600;
 }
 
-/* Приветствие БЕЗ контейнера и с большим отступом снизу (как у дизайнера) */
+/* Приветствие */
 .hero-clean {
     padding: 20px 8px 0;
-    margin-bottom: 24vh; /* Большое пространство между приветствием и основной информацией */
+    margin-bottom: 24vh;
+    transition: margin-bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero-clean h1 {
@@ -331,7 +297,6 @@ body {
     max-width: 680px;
 }
 
-/* Отступы между предложениями, чтобы текст не сливался */
 .hero-bio p {
     margin-bottom: 12px;
 }
@@ -340,30 +305,56 @@ body {
     margin-bottom: 0;
 }
 
-/* Основной блок информации (секции собраны аккуратно вместе) */
-.main-content-group {
-    display: flex;
-    flex-direction: column;
-    gap: 36px; /* Компактный, сбалансированный отступ между разделами */
+/* Стили для фоновых узоров (Doodles) */
+.tab-section {
+    position: relative;
+    margin-bottom: 80px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.tab-section {
-    animation: fadeInTab 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+.section-doodles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
 }
+
+.doodle {
+    position: absolute;
+    stroke: var(--doodle-color);
+    fill: none;
+    opacity: 0.65;
+    transition: stroke 0.4s ease;
+}
+
+/* Расположение узоров по секциям */
+.work-doodles .d-1 { width: 70px; top: 10%; left: -20px; transform: rotate(-15deg); }
+.work-doodles .d-2 { width: 90px; bottom: 15%; right: -30px; transform: rotate(20deg); }
+.work-doodles .d-3 { width: 60px; top: 50%; right: 10px; transform: rotate(10deg); }
+
+.edu-doodles .d-1 { width: 80px; top: 5%; right: -25px; transform: rotate(15deg); }
+.edu-doodles .d-2 { width: 70px; bottom: 20%; left: -25px; transform: rotate(-10deg); }
+.edu-doodles .d-3 { width: 65px; top: 60%; right: 15px; transform: rotate(-25deg); }
+
+.skills-doodles .d-1 { width: 75px; top: 15%; left: -20px; transform: rotate(20deg); }
+.skills-doodles .d-2 { width: 85px; bottom: 10%; right: -25px; transform: rotate(-15deg); }
+.skills-doodles .d-3 { width: 60px; top: 45%; right: 5px; transform: rotate(5deg); }
 
 .tab-section.hidden {
     display: none;
 }
 
 @keyframes fadeInTab {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tab-section:not(.hidden) {
+    animation: fadeInTab 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .tab-section h2 {
@@ -380,12 +371,13 @@ body {
     border-radius: 16px;
     padding: 26px 28px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-block:hover {
     border-color: var(--accent-blue);
-    box-shadow: 0 10px 28px var(--accent-glow);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--accent-glow);
 }
 
 .block-header {
@@ -418,7 +410,6 @@ body {
     margin-bottom: 14px;
 }
 
-/* Кнопка раскрытия подробностей */
 .details-toggle {
     margin-top: 12px;
     background: transparent;
@@ -435,31 +426,34 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.details-toggle:hover {
-    opacity: 0.8;
-}
+.details-toggle:hover { opacity: 0.8; }
 
 .details-toggle svg {
     width: 14px;
     height: 14px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .details-toggle.open svg {
     transform: rotate(180deg);
 }
 
-/* Скрываемый блок подробностей */
+/* Плавное раскрытие */
 .collapsible-content {
-    display: none;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid var(--card-border);
-    animation: fadeInTab 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+    border-top: 0 solid var(--card-border);
 }
 
 .collapsible-content.expanded {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--card-border);
 }
 
 .task-list {
@@ -473,9 +467,7 @@ body {
     margin-bottom: 10px;
 }
 
-.task-list li:last-child {
-    margin-bottom: 0;
-}
+.task-list li:last-child { margin-bottom: 0; }
 
 .regular-text {
     font-size: 0.96rem;
@@ -488,9 +480,7 @@ body {
     gap: 18px;
 }
 
-.dual-grid .card-block {
-    height: 100%;
-}
+.dual-grid .card-block { height: 100%; }
 
 /* Footer */
 .portfolio-footer {
@@ -515,21 +505,16 @@ body {
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
 .portfolio-footer-links a:hover {
+    opacity: 0.75;
     text-decoration: underline;
 }
 
 @media (max-width: 480px) {
-    .nav-tab {
-        padding: 7px 14px;
-        font-size: 0.86rem;
-    }
-    .hero-clean h1 {
-        font-size: 2.2rem;
-    }
-    .hero-clean {
-        margin-bottom: 16vh;
-    }
+    .nav-tab { padding: 7px 14px; font-size: 0.86rem; }
+    .hero-clean h1 { font-size: 2.2rem; }
+    .hero-clean { margin-bottom: 16vh; }
 }

@@ -63,16 +63,10 @@
             </div>
         </div>
 
-        <!-- Навигация (Segmented Control) -->
-        <div class="nav-wrapper">
-            <nav class="segmented-nav" id="segmentedNav">
-                <div class="nav-glider" id="navGlider"></div>
-                <button class="nav-tab active" data-target="all" data-i18n="nav_all">All</button>
-                <button class="nav-tab" data-target="experience" data-i18n="nav_exp">Experience</button>
-                <button class="nav-tab" data-target="education" data-i18n="nav_edu">Education</button>
-                <button class="nav-tab" data-target="skills" data-i18n="nav_skills">Skills</button>
-            </nav>
-        </div>
+        nav class="portfolio-nav">
+    <button class="nav-tab active" data-target="about" data-i18n="nav_about">About</button>
+    <button class="nav-tab" data-target="project" data-i18n="nav_project">Project</button>
+</nav>
 
         <!-- Main Section -->
         <section id="hero" class="hero-clean">
@@ -213,10 +207,20 @@
                 <a href="https://www.linkedin.com/in/nodirjontolipov-finance-accounting238" target="_blank">LinkedIn</a>
                 <a href="mailto:ntolipov.work@gmail.com" data-i18n="footer_email">Email</a>
                 <a href="https://github.com/rowanb-sh" target="_blank">GitHub</a>
+            <div class="social-links-container" style="text-align: center; margin: 40px 0 80px 0;">
+    <a href="https://www.instagram.com/ridont_1?rpxt=MXNyMWthampiNTV1bg==" target="_blank" style="margin: 0 10px; color: var(--accent-blue);">Instagram</a>
+    <a href="https://wa.me/qr/2EMGCNN7VPV6G1" target="_blank" style="margin: 0 10px; color: var(--accent-blue);">WhatsApp</a>
+    <a href="https://www.facebook.com/share/1Ez2abHntJ/" target="_blank" style="margin: 0 10px; color: var(--accent-blue);">Facebook</a>
+</div>
             </div>
         </footer>
     </div>
 
     <script src="script.js"></script>
+<div class="glitch-toggle-bar" id="glitchToggleBtn" onclick="toggleGlitchMaster()">
+    <span id="glitchIcon">⚡</span>
+    <span id="glitchStatusText">Chaos Active</span>
+</div>
+
 </body>
 </html>

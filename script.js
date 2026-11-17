@@ -18,14 +18,6 @@ window.addEventListener('click', (e) => {
     }
 });
 
-function applySystemTheme() {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.body.classList.remove('theme-dark', 'theme-midnight');
-    if (prefersDark) {
-        document.body.classList.add('theme-midnight');
-    }
-}
-
 function setTheme(mode) {
     const body = document.body;
     body.classList.remove('theme-dark', 'theme-midnight');
@@ -41,10 +33,6 @@ function setTheme(mode) {
         body.classList.add('theme-midnight');
         icon = '🌌';
         name = 'Midnight';
-    } else if (mode === 'system') {
-        applySystemTheme();
-        icon = '💻';
-        name = 'Follow device';
     }
 
     document.getElementById('activeThemeIcon').textContent = icon;
@@ -61,7 +49,7 @@ const sections = document.querySelectorAll('.tab-section');
 
 function moveGlider(activeTab) {
     navGlider.style.width = `${activeTab.offsetWidth}px`;
-    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 4}px)`;
+    navGlider.style.transform = `translateX(${activeTab.offsetLeft - 5}px)`;
 }
 
 function filterSections(target) {
@@ -88,8 +76,12 @@ navTabs.forEach(tab => {
 
 // Инициализация при загрузке
 window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('portfolio_theme') || 'light';
-    setTheme(savedTheme);
+    const savedTheme = localStorage.getItem('portfolio_theme');
+    if (savedTheme === 'dark' || savedTheme === 'midnight') {
+        setTheme(savedTheme);
+    } else {
+        setTheme('light');
+    }
 
     const initialActiveTab = document.querySelector('.nav-tab.active');
     if (initialActiveTab) {

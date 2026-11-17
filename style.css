@@ -1,17 +1,17 @@
-/* Светлая тема (по умолчанию) с пастельными 3D-сферами */
+/* Светлая тема (по умолчанию) */
 :root {
     --bg-main: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-border: rgba(226, 232, 240, 0.8);
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --card-border: rgba(226, 232, 240, 0.85);
     --text-primary: #0f172a;
-    --text-muted: #64748b;
+    --text-muted: #475569;
     --accent-blue: #2563eb;
     --accent-glow: rgba(37, 99, 235, 0.12);
     --tag-bg: rgba(37, 99, 235, 0.08);
-    --pill-bg: rgba(241, 245, 249, 0.9);
+    --pill-bg: rgba(255, 255, 255, 0.75);
     --pill-active-bg: #ffffff;
-    --pill-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
-    --pill-border-gradient: linear-gradient(90deg, #c4b5fd, #fbcfe8, #bae6fd);
+    --pill-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+    --pill-border: rgba(203, 213, 225, 0.8);
     
     --orb-1: rgba(236, 72, 153, 0.22);
     --orb-2: rgba(59, 130, 246, 0.22);
@@ -21,17 +21,17 @@
 /* Тёмная тема: Dark */
 body.theme-dark {
     --bg-main: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.8);
-    --card-border: rgba(51, 65, 85, 0.8);
+    --card-bg: rgba(30, 41, 59, 0.78);
+    --card-border: rgba(51, 65, 85, 0.85);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
     --accent-blue: #60a5fa;
     --accent-glow: rgba(96, 165, 250, 0.18);
     --tag-bg: rgba(96, 165, 250, 0.12);
-    --pill-bg: rgba(30, 41, 59, 0.9);
-    --pill-active-bg: #475569;
-    --pill-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-    --pill-border-gradient: linear-gradient(90deg, #4f46e5, #7c3aed, #0284c7);
+    --pill-bg: rgba(30, 41, 59, 0.75);
+    --pill-active-bg: #334155;
+    --pill-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    --pill-border: rgba(71, 85, 105, 0.7);
 
     --orb-1: rgba(99, 102, 241, 0.25);
     --orb-2: rgba(14, 165, 233, 0.22);
@@ -41,17 +41,17 @@ body.theme-dark {
 /* Тёмная тема: Midnight */
 body.theme-midnight {
     --bg-main: #070b14;
-    --card-bg: rgba(17, 24, 39, 0.8);
+    --card-bg: rgba(17, 24, 39, 0.78);
     --card-border: rgba(30, 41, 59, 0.9);
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
     --accent-blue: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.25);
     --tag-bg: rgba(59, 130, 246, 0.15);
-    --pill-bg: rgba(17, 24, 39, 0.9);
-    --pill-active-bg: #1f2937;
-    --pill-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    --pill-border-gradient: linear-gradient(90deg, #3b82f6, #6366f1, #0ea5e9);
+    --pill-bg: rgba(17, 24, 39, 0.75);
+    --pill-active-bg: #1e293b;
+    --pill-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    --pill-border: rgba(51, 65, 85, 0.7);
 
     --orb-1: rgba(59, 130, 246, 0.28);
     --orb-2: rgba(139, 92, 246, 0.25);
@@ -62,14 +62,20 @@ body.theme-midnight {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* Убираем стандартный синий/серый квадрат при тапе на телефоне */
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+    outline: none;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Lora', Georgia, serif;
     background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.6;
-    padding: 24px 16px 60px;
+    line-height: 1.75;
+    padding: 20px 16px 70px;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -91,54 +97,54 @@ body {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(85px);
-    transition: background 0.5s ease, transform 0.5s ease;
+    filter: blur(95px);
+    transition: background 0.5s ease;
 }
 
 .orb-1 {
-    width: 420px;
-    height: 420px;
+    width: 450px;
+    height: 450px;
     background: var(--orb-1);
-    top: -80px;
+    top: -100px;
     left: -100px;
-    animation: floatOrb1 12s ease-in-out infinite alternate;
+    animation: floatOrb1 14s ease-in-out infinite alternate;
 }
 
 .orb-2 {
-    width: 480px;
-    height: 480px;
+    width: 500px;
+    height: 500px;
     background: var(--orb-2);
-    top: 35%;
-    right: -120px;
-    animation: floatOrb2 15s ease-in-out infinite alternate;
+    top: 30%;
+    right: -140px;
+    animation: floatOrb2 16s ease-in-out infinite alternate;
 }
 
 .orb-3 {
-    width: 380px;
-    height: 380px;
+    width: 400px;
+    height: 400px;
     background: var(--orb-3);
-    bottom: -60px;
-    left: 25%;
-    animation: floatOrb3 10s ease-in-out infinite alternate;
+    bottom: -80px;
+    left: 20%;
+    animation: floatOrb3 12s ease-in-out infinite alternate;
 }
 
 @keyframes floatOrb1 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(40px, 60px) scale(1.1); }
+    100% { transform: translate(50px, 70px) scale(1.1); }
 }
 
 @keyframes floatOrb2 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-50px, -40px) scale(1.15); }
+    100% { transform: translate(-60px, -50px) scale(1.15); }
 }
 
 @keyframes floatOrb3 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, -50px) scale(1.05); }
+    100% { transform: translate(40px, -60px) scale(1.05); }
 }
 
 .portfolio-container {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
 }
 
@@ -149,7 +155,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 4px 24px;
+    padding: 4px 2px 24px;
 }
 
 .current-date {
@@ -167,15 +173,16 @@ body {
     backdrop-filter: blur(12px);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 8px 16px;
+    padding: 7px 14px;
     border-radius: 999px;
     cursor: pointer;
     font-size: 0.85rem;
+    font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -197,13 +204,13 @@ body {
 .theme-menu {
     position: absolute;
     right: 0;
-    top: 44px;
+    top: 42px;
     background-color: var(--card-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
     border-radius: 14px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-    width: 175px;
+    width: 170px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -225,10 +232,11 @@ body {
     border: none;
     color: var(--text-primary);
     text-align: left;
-    padding: 10px 12px;
+    padding: 9px 12px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.88rem;
+    font-family: 'Lora', Georgia, serif;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -240,11 +248,11 @@ body {
     color: var(--accent-blue);
 }
 
-/* Навигация (Пилюля) */
+/* Навигация-пилюля (исправлена: без квадрата и лишней заливки) */
 .nav-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 36px;
+    margin-bottom: 56px;
 }
 
 .segmented-nav {
@@ -253,28 +261,17 @@ body {
     align-items: center;
     background: var(--pill-bg);
     backdrop-filter: blur(12px);
-    padding: 5px;
+    padding: 4px;
     border-radius: 999px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    border: 1.5px solid transparent;
-    background-clip: padding-box;
-}
-
-.segmented-nav::before {
-    content: "";
-    position: absolute;
-    inset: -1.5px;
-    border-radius: 999px;
-    background: var(--pill-border-gradient);
-    z-index: -1;
-    opacity: 0.85;
+    border: 1px solid var(--pill-border);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
 .nav-glider {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    height: calc(100% - 10px);
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
     background-color: var(--pill-active-bg);
     border-radius: 999px;
     box-shadow: var(--pill-shadow);
@@ -291,6 +288,7 @@ body {
     padding: 8px 20px;
     border-radius: 999px;
     font-size: 0.9rem;
+    font-family: 'Lora', Georgia, serif;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.25s ease;
@@ -306,53 +304,50 @@ body {
     font-weight: 600;
 }
 
-/* Hero Section (Больше воздуха) */
-.hero-section {
-    position: relative;
-    margin-bottom: 40px;
-    background-color: var(--card-bg);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--card-border);
-    padding: 42px 40px;
-    border-radius: 20px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+/* Приветствие БЕЗ контейнера и с большим отступом снизу (как у дизайнера) */
+.hero-clean {
+    padding: 20px 8px 0;
+    margin-bottom: 24vh; /* Большое пространство между приветствием и основной информацией */
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent-blue);
-}
-
-.hero-section h1 {
-    font-size: 2.35rem;
-    font-weight: 800;
-    margin-bottom: 10px;
+.hero-clean h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 14px;
     letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
     color: var(--accent-blue);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .hero-bio {
     color: var(--text-muted);
-    font-size: 1rem;
-    max-width: 740px;
+    font-size: 1.05rem;
+    max-width: 680px;
 }
 
-/* Секции (Больше пространства между блоками) */
+/* Отступы между предложениями, чтобы текст не сливался */
+.hero-bio p {
+    margin-bottom: 12px;
+}
+
+.hero-bio p:last-child {
+    margin-bottom: 0;
+}
+
+/* Основной блок информации (секции собраны аккуратно вместе) */
+.main-content-group {
+    display: flex;
+    flex-direction: column;
+    gap: 36px; /* Компактный, сбалансированный отступ между разделами */
+}
+
 .tab-section {
-    margin-bottom: 40px;
     animation: fadeInTab 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -372,11 +367,10 @@ body {
 }
 
 .tab-section h2 {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
 }
 
 .card-block {
@@ -384,16 +378,14 @@ body {
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    padding: 26px 28px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
 
 .card-block:hover {
     border-color: var(--accent-blue);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px var(--accent-glow);
+    box-shadow: 0 10px 28px var(--accent-glow);
 }
 
 .block-header {
@@ -401,12 +393,12 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 
 .card-block h3 {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 600;
 }
 
@@ -414,42 +406,89 @@ body {
     font-size: 0.82rem;
     color: var(--accent-blue);
     background-color: var(--tag-bg);
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 6px;
     font-weight: 600;
 }
 
 .block-sub {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     color: var(--text-muted);
     font-weight: 500;
     margin-bottom: 14px;
+}
+
+/* Кнопка раскрытия подробностей */
+.details-toggle {
+    margin-top: 12px;
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    transition: opacity 0.2s ease;
+}
+
+.details-toggle:hover {
+    opacity: 0.8;
+}
+
+.details-toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+}
+
+.details-toggle.open svg {
+    transform: rotate(180deg);
+}
+
+/* Скрываемый блок подробностей */
+.collapsible-content {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--card-border);
+    animation: fadeInTab 0.3s ease;
+}
+
+.collapsible-content.expanded {
+    display: block;
 }
 
 .task-list {
     list-style-type: disc;
     padding-left: 20px;
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.96rem;
 }
 
 .task-list li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.task-list li:last-child {
+    margin-bottom: 0;
 }
 
 .regular-text {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     color: var(--text-muted);
 }
 
 .dual-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
 }
 
 .dual-grid .card-block {
-    margin-bottom: 0;
     height: 100%;
 }
 
@@ -457,14 +496,14 @@ body {
 .portfolio-footer {
     border-top: 1px solid var(--card-border);
     padding-top: 26px;
-    margin-top: 50px;
+    margin-top: 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 14px;
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.9rem;
 }
 
 .portfolio-footer-links {
@@ -485,12 +524,12 @@ body {
 @media (max-width: 480px) {
     .nav-tab {
         padding: 7px 14px;
-        font-size: 0.85rem;
+        font-size: 0.86rem;
     }
-    .hero-section {
-        padding: 30px 24px;
+    .hero-clean h1 {
+        font-size: 2.2rem;
     }
-    .hero-section h1 {
-        font-size: 1.9rem;
+    .hero-clean {
+        margin-bottom: 16vh;
     }
 }

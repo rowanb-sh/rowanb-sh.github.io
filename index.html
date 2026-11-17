@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodirjon Tolipov</title>
+    <!-- Подключаем шрифт Lora для мягкой современной классики -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,7 +39,7 @@
             </div>
         </div>
 
-        <!-- Навигация (Segmented Control) -->
+        <!-- Единый контейнер навигации (исправлен баг с квадратом при нажатии) -->
         <div class="nav-wrapper">
             <nav class="segmented-nav" id="segmentedNav">
                 <div class="nav-glider" id="navGlider"></div>
@@ -46,66 +50,119 @@
             </nav>
         </div>
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
+        <!-- Hero Section БЕЗ контейнера и рамок (воздушное приветствие) -->
+        <section id="hero" class="hero-clean">
             <h1>Hi, I'm Nodirjon!</h1>
             <p class="hero-subtitle">Student at Westminster International University in Tashkent (WIUT)</p>
-            <p class="hero-bio">
-                Interested in logic, patterns, and systemic relationships. My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance. Dedicated to structured problem-solving and continuous professional growth.
-            </p>
-        </section>
-
-        <!-- Professional Experience -->
-        <section id="experience" class="tab-section" data-section="experience">
-            <h2>Professional Experience</h2>
-            <div class="card-block">
-                <div class="block-header">
-                    <h3>Road Transport Health and Safety Manager</h3>
-                    <span class="block-date">Apr 2026 – Nov 2026</span>
-                </div>
-                <p class="block-sub">Safety &amp; Fleet Department (US Logistics)</p>
-                <ul class="task-list">
-                    <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations.</li>
-                    <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses.</li>
-                    <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency.</li>
-                    <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting.</li>
-                </ul>
+            <div class="hero-bio">
+                <p>Interested in logic, patterns, and systemic relationships.</p>
+                <p>My curiosity spans analytical systems, quantitative methods, business administration, and operational compliance.</p>
+                <p>Dedicated to structured problem-solving and continuous professional growth.</p>
             </div>
         </section>
 
-        <!-- Education & Training -->
-        <section id="education" class="tab-section" data-section="education">
-            <h2>Education &amp; Training</h2>
-            <div class="dual-grid">
+        <!-- Основная информация собрана компактно после большого отступа -->
+        <main class="main-content-group">
+            <!-- Professional Experience -->
+            <section id="experience" class="tab-section" data-section="experience">
+                <h2>Professional Experience</h2>
                 <div class="card-block">
-                    <h3>Westminster International University in Tashkent (WIUT)</h3>
-                    <p class="block-date">Sep 2026 – Present</p>
-                    <p class="block-sub">Certificate of International Foundation Studies (CIFS)</p>
-                    <p class="regular-text">Modules: Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics.</p>
+                    <div class="block-header">
+                        <h3>Road Transport Health and Safety Manager</h3>
+                        <span class="block-date">Apr 2026 – Nov 2026</span>
+                    </div>
+                    <p class="block-sub">Safety &amp; Fleet Department (US Logistics)</p>
+                    
+                    <button class="details-toggle" onclick="toggleDetails(this)">
+                        <span>Show details</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    
+                    <div class="collapsible-content">
+                        <ul class="task-list">
+                            <li>Monitored and audited driver Hours of Service (HOS) logs via Electronic Logging Device (ELD) systems to ensure 100% compliance with FMCSA and DOT regulations.</li>
+                            <li>Conducted daily operational control of shifts, tracked target performance metrics, and managed active task statuses.</li>
+                            <li>Prepared comprehensive shift-handover reports for management, ensuring complete business continuity and transparency.</li>
+                            <li>Onboarded new employees on operational workflows, compliance SOPs, and ELD troubleshooting.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card-block">
-                    <h3>Academic Lyceum of WIUT</h3>
-                    <p class="block-date">Sep 2024 – Jun 2026</p>
-                    <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)</p>
-                    <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Skills & Languages -->
-        <section id="skills" class="tab-section" data-section="skills">
-            <h2>Skills &amp; Competencies</h2>
-            <div class="dual-grid">
-                <div class="card-block">
-                    <h3>Analytical &amp; Operational</h3>
-                    <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.</p>
+            <!-- Education & Training -->
+            <section id="education" class="tab-section" data-section="education">
+                <h2>Education &amp; Training</h2>
+                <div class="dual-grid">
+                    <div class="card-block">
+                        <div class="block-header">
+                            <h3>Westminster International University in Tashkent</h3>
+                            <span class="block-date">Sep 2026 – Present</span>
+                        </div>
+                        <p class="block-sub">Certificate of International Foundation Studies (CIFS)</p>
+                        
+                        <button class="details-toggle" onclick="toggleDetails(this)">
+                            <span>Show modules</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        
+                        <div class="collapsible-content">
+                            <p class="regular-text">Academic Communication Skills, Quantitative Methods, Critical Thinking, Professional Skills, Understanding Finance, Introduction to Business and Economics.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="block-header">
+                            <h3>Academic Lyceum of WIUT</h3>
+                            <span class="block-date">Sep 2024 – Jun 2026</span>
+                        </div>
+                        <p class="block-sub">Exact Sciences (GPA: 4.0 / 5.0)</p>
+                        
+                        <button class="details-toggle" onclick="toggleDetails(this)">
+                            <span>Show subjects</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        
+                        <div class="collapsible-content">
+                            <p class="regular-text">Specialized in advanced Mathematics, Algebra, Geometry, Statistics, and English.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block">
-                    <h3>Languages</h3>
-                    <p class="regular-text">Russian (Native), English (B2 - IELTS certified).</p>
+            </section>
+
+            <!-- Skills & Languages -->
+            <section id="skills" class="tab-section" data-section="skills">
+                <h2>Skills &amp; Competencies</h2>
+                <div class="dual-grid">
+                    <div class="card-block">
+                        <h3>Analytical &amp; Operational</h3>
+                        <p class="block-sub" style="margin-bottom: 0;">Data Analysis, Finance Basics &amp; Compliance</p>
+                        
+                        <button class="details-toggle" onclick="toggleDetails(this)">
+                            <span>Show skills</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        
+                        <div class="collapsible-content">
+                            <p class="regular-text">Quantitative Data Analysis, Finance Basics, SOP Compliance, Staff Onboarding, Shift-to-Shift Reporting, ELD Web Tracking.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+                        <h3>Languages</h3>
+                        <p class="block-sub" style="margin-bottom: 0;">Russian &amp; English</p>
+                        
+                        <button class="details-toggle" onclick="toggleDetails(this)">
+                            <span>Show proficiency</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        
+                        <div class="collapsible-content">
+                            <p class="regular-text">Russian (Native), English (B2 - IELTS certified).</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
         <!-- Footer -->
         <footer class="portfolio-footer">
